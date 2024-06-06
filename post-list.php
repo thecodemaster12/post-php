@@ -33,7 +33,7 @@ include 'includes/helper-func.php';
                     <p class="card-title-desc">Some Text</p>    
                     
                     <?php
-                        $postList =  getPostList($conn);
+                        $postList =  getPostList(null, $conn);
                         if (mysqli_num_rows($postList) > 0) {
                             $count = 1;
                             echo "<table class='text-center table table-hover mb-0'>

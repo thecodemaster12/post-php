@@ -1,0 +1,31 @@
+.sr-section {
+    min-height: 100vh;
+    position: relative;
+}
+
+.sr-position-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-list-grid {
+    display: grid;
+    grid-template-columns: 15% 15% 60% 10%;
+    justify-items: center;
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.user-post-list {
+    display: block;
+    padding: 10px 0px;
+    transition: all .1s ease-in-out;
+}
+.user-post-list:hover {
+    display: block;
+    padding: 10px 0px;
+    background-color: ghostwhite;
+}

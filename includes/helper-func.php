@@ -80,9 +80,50 @@ function getUserList($conn) {
     return $result;
 }
 
-function getPostList($conn) {
-    $sql = "SELECT * FROM posts";
+function getUserId($userEmail, $conn) {
+    $sql = "SELECT * FROM users WHERE user_email = '$userEmail'";
     $result = mysqli_query($conn, $sql);
-    return $result;
+    $row = mysqli_fetch_assoc($result);
+    return $row['user_id'];
 }
 
+function getPostList($orgId, $conn) {
+    if ($orgId == null) {
+        $sql = "SELECT * FROM posts";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+    else {
+        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_by = $orgId";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+}
+
+function isNotAdmin($adminEmail, $adminPass, $conn) {
+    $sql = "SELECT * FROM admins";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row['admin_email'] == $adminEmail && $row['admin_pass'] == $adminPass)
+        return false;
+    else
+        return true;
+}
+
+
+function isNotUser($userEmail, $userPass, $conn) {
+    $sql = "SELECT * FROM users WHERE user_email = '$userEmail'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {        
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($userPass, $row['user_pass']))
+            return false;
+        else
+            return true;
+    }
+    else {
+        return true;
+    }
+
+}

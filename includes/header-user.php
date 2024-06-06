@@ -1,13 +1,19 @@
 <?php
 session_start();
-if (empty($_SESSION['admin'])){
-    header("Location: admin-login.php");
+include 'helper-func.php';
+if (empty($_SESSION['user'])){
+    header("Location: user-login.php");
 }
 
 if (isset($_GET['logout'])) {
-    unset($_SESSION['admin']);
-    header("Location: admin-login.php");
+    unset($_SESSION['user']);
+    header("Location: user-login.php");
 }
+$userID = $_SESSION['user'];
+$sql = "SELECT * FROM users WHERE user_id = '$userID'";
+$result = mysqli_query($conn, $sql);
+$userInfo = mysqli_fetch_assoc($result);
+
 ?>
 
 <!doctype html>
@@ -24,10 +30,10 @@ if (isset($_GET['logout'])) {
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- jquery.vectormap css -->
-        <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" /> -->
 
         <!-- DataTables -->
-        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" /> -->
 
         <!-- Responsive datatable examples -->
         <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
@@ -38,9 +44,10 @@ if (isset($_GET['logout'])) {
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
+        <link href="assets/css/style.css" rel="stylesheet">
+        
     </head>
-
+    
     <body data-topbar="dark">
     
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -422,7 +429,7 @@ if (isset($_GET['logout'])) {
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
                                     alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1"> <?php echo $_SESSION['admin']?></span>
+                                <span class="d-none d-xl-inline-block ms-1"> <?php echo $userInfo['user_name']?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -458,45 +465,18 @@ if (isset($_GET['logout'])) {
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="dashboard.php" class="waves-effect">
+                                <a href="user-dashboard.php" class="waves-effect">
                                     <i class="ri-dashboard-line"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
-                
+
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <a href="user-post.php" class="waves-effect">
                                     <i class="ri-edit-line"></i>
-                                    <span>Posts</span>
+                                    <span>Post</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="add-post.php">Add Post</a></li>
-                                    <li><a href="post-list.php">Post List</a></li>
-                                </ul>
                             </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-user-line"></i>
-                                    <span>Users</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="add-user.php">Add User</a></li>
-                                    <li><a href="user-list.php">User List</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-building-line"></i>
-                                    <span>Organizations</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="add-organization.php">Add Organization</a></li>
-                                    <li><a href="organization-list.php">Organization List</a></li>
-                                </ul>
-                            </li>
-
 
 
                         </ul>

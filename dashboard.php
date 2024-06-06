@@ -1,5 +1,6 @@
 <?php
 include 'includes/header.php';
+include 'includes/helper-func.php';
 ?>
 
 
@@ -23,7 +24,79 @@ include 'includes/header.php';
     <!-- end page title -->
 
     <!-- Code Here -->
-    <h3>Welcome to Dashboard</h3>
+    <h3>Hello <?php echo $_SESSION['admin']?>, Welcome to Dashboard</h3>
+
+    <div class="row">
+        <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-truncate font-size-14 mb-2">Total Posts</p>
+                            <h4 class="mb-2">
+                                <?php 
+                                    $postList = getPostList(null, $conn);
+                                    echo mysqli_num_rows($postList);
+                                    mysqli_free_result($postList);
+                                ?>
+                            </h4>
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-primary rounded-3">
+                                <i class="ri-edit-line font-size-24"></i>  
+                            </span>
+                        </div>
+                    </div>                                            
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-truncate font-size-14 mb-2">Total Users</p>
+                            <h4 class="mb-2">
+                            <?php 
+                                    $userList = getUserList($conn);
+                                    echo mysqli_num_rows($userList);
+                                    mysqli_free_result($userList);
+                                ?>
+                            </h4>
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-primary rounded-3">
+                                <i class="ri-user-line font-size-24"></i>  
+                            </span>
+                        </div>
+                    </div>                                              
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-truncate font-size-14 mb-2">Total Organizations</p>
+                            <h4 class="mb-2">
+                            <?php 
+                                    $orgList = getOrgList(null, $conn);
+                                    echo mysqli_num_rows($orgList);
+                                    mysqli_free_result($orgList);
+                                ?>
+                            </h4>
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-primary rounded-3">
+                                <i class="ri-building-line font-size-24"></i>  
+                            </span>
+                        </div>
+                    </div>                                              
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div><!-- end row -->
 
 </div>
 

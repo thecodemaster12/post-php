@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userConfPass = htmlspecialchars($_POST['userConfPass']);
     $userOrg = htmlspecialchars($_POST['userOrg']);
     
-    if (isEmpty($userName, $userEmail, $userPass, $userConfPass, $userOrg)) {
+    if (isUserEmpty($userName, $userEmail, $userPass, $userConfPass, $userOrg)) {
         $_SESSION['add-user-error'] = "Please fill all the inputs";
         header("Location: ../add-user.php");
         exit();
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit();
     }
 
-    $userPass = makePassHash($userConfPass);
+    $userPass = password_hash($userConfPass, PASSWORD_DEFAULT);
 
     addUser($userName, $userEmail, $userPass, $userOrg , $conn);
     $_SESSION['add-user-success'] = "User Added";
