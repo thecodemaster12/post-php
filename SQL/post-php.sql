@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2024 at 02:13 PM
+-- Generation Time: Jun 07, 2024 at 11:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,9 +87,14 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_title`, `project_name`, `post_details`, `post_by`, `created_at`) VALUES
-(5, 'Airtel Post 1', 'Airtel Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-05 15:25:37'),
-(6, 'Banglalink Post 1', 'Banglalink Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 9, '2024-06-06 15:28:25'),
-(7, 'Airtel Post 2', 'Airtel Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-06 15:28:52');
+(5, 'Airtel Post 1', 'Airtel Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-01 15:25:37'),
+(6, 'Banglalink Post 1', 'Banglalink Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 9, '2024-05-15 15:28:25'),
+(7, 'Airtel Post 2', 'Airtel Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-19 15:28:52'),
+(8, 'Banglalink Post 2', 'Banglalink Project 2', 'fljaldknlfansdfl dsjflkajsdlfkjasdfo dlfnadlflakdsjf', 9, '2024-05-25 14:49:48'),
+(9, 'Robi Post 1', 'Robi Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-01 15:11:20'),
+(10, 'Robi Post 2', 'Robi Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-05 15:11:31'),
+(11, 'Teletalk Post 1', 'Teletalk Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:01'),
+(12, 'Teletalk Post 2', 'Teletalk Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:15');
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,7 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
