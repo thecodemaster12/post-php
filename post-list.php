@@ -1,6 +1,10 @@
 <?php
 include 'includes/header.php';
 include 'includes/helper-func.php';
+
+if (isset($_GET['postId'])) {
+    deletePost($_GET['postId'], $conn);
+}
 ?>
 
 
@@ -30,7 +34,16 @@ include 'includes/helper-func.php';
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Post List</h4>
-                    <p class="card-title-desc">Some Text</p>    
+                    <p class="card-title-desc">Some Text</p>
+                    <div class="text-end">
+                        <?php
+                        $trashList = getTrashList($conn);
+                            if (mysqli_num_rows($trashList) > 0) {
+                                echo "<a href='trash.php?trash=post' class='d-inline-block bg-danger text-white p-2 rounded-2'>Trash (".mysqli_num_rows($trashList)." items)</a>";
+                                # code...
+                            }
+                        ?>
+                    </div>    
                     
                     <?php
                         $postList =  getPostList(null, $conn);
@@ -56,7 +69,7 @@ include 'includes/helper-func.php';
                                     <td>".getOrgList($row ['post_by'], $conn)."</td>
                                     <td>
                                         <a href='".$row ['post_id']."'>Update</a>
-                                        <a href='".$row ['post_id']."'>Delete</a>
+                                        <a href='".htmlspecialchars($_SERVER['PHP_SELF'])."?postId=".$row ['post_id']."'>Delete</a>
                                     </td>
                                 </tr>";
                                 $count++;

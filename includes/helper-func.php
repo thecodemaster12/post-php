@@ -89,7 +89,7 @@ function getUserId($userEmail, $conn) {
 
 function getPostList($orgId, $conn) {
     if ($orgId == null) {
-        $sql = "SELECT * FROM posts";
+        $sql = "SELECT * FROM posts WHERE post_status = 1";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -175,4 +175,16 @@ function uploadFiles($files, $postTitle, $postId, $conn) {
         // Move the uploaded file to the specified directory with the new file name
         move_uploaded_file($file_tmp, $path.$new_file_name);
     }
+}
+
+function deletePost($id, $conn) {
+    $sql = "UPDATE posts SET post_status=0 WHERE post_id = $id";
+    $result = mysqli_query($conn, $sql);
+}
+
+
+function getTrashList($conn) {
+    $sql = "SELECT * FROM posts WHERE post_status = 0";
+    $result = mysqli_query($conn, $sql);
+    return $result;
 }
