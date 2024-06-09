@@ -100,6 +100,12 @@ function getPostList($orgId, $conn) {
     }
 }
 
+function getPost($postId, $conn) {
+    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 function isNotAdmin($adminEmail, $adminPass, $conn) {
     $sql = "SELECT * FROM admins";
     $result = mysqli_query($conn, $sql);
