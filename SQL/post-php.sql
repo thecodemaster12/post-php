@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 11:15 AM
+-- Generation Time: Jun 09, 2024 at 10:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -94,7 +94,30 @@ INSERT INTO `posts` (`post_id`, `post_title`, `project_name`, `post_details`, `p
 (9, 'Robi Post 1', 'Robi Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-01 15:11:20'),
 (10, 'Robi Post 2', 'Robi Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-05 15:11:31'),
 (11, 'Teletalk Post 1', 'Teletalk Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:01'),
-(12, 'Teletalk Post 2', 'Teletalk Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:15');
+(12, 'Teletalk Post 2', 'Teletalk Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:15'),
+(22, 'Post with Files', 'Project #', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 11:52:43'),
+(23, 'Post without Files', 'Project $', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 12:00:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_files`
+--
+
+CREATE TABLE `post_files` (
+  `post_files_id` int(6) NOT NULL,
+  `post_files_names` varchar(255) NOT NULL,
+  `post_id` int(6) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `post_files`
+--
+
+INSERT INTO `post_files` (`post_files_id`, `post_files_names`, `post_id`, `created_at`) VALUES
+(9, 'Post with Files_6665432b16559_[JavaScript The Good Parts 1st Edition by Douglas Crockford - 2008].pdf', 22, '2024-06-09 11:52:43'),
+(10, 'Post with Files_6665432b17007_majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai.jpg', 22, '2024-06-09 11:52:43');
 
 -- --------------------------------------------------------
 
@@ -146,6 +169,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`);
 
 --
+-- Indexes for table `post_files`
+--
+ALTER TABLE `post_files`
+  ADD PRIMARY KEY (`post_files_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -171,7 +200,13 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `post_files`
+--
+ALTER TABLE `post_files`
+  MODIFY `post_files_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -44,6 +44,21 @@ if (isset($_GET['postId'])) {
 
                         <p><?php echo $row['project_name'] ?></p>
                         <p><?php echo $row['post_details'] ?></p>
+                        <br><br>
+
+                        <p>Attachments</p>
+                        <hr>
+                        <?php
+                            $postFiles = getFiles($_GET['postId'], $conn);
+                            if (mysqli_num_rows($postFiles) > 0) {
+                                while ($row = mysqli_fetch_assoc($postFiles) ) {
+                                    echo "<a download href='uploads/".$row['post_files_names']."'</a>".$row['post_files_names']."<br>";
+                                    // echo "<embed src='uploads/".$row['post_files_names']."' width='100px' height='100px' />"."<br>";
+                                }
+                            }
+                            else
+                                echo "No was File Attached";
+                        ?>
                         
 
                         <!-- <div class="row">

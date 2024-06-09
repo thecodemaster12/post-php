@@ -43,7 +43,7 @@ include 'includes/helper-func.php';
                         ?>
                     </p>
 
-                    <form class="custom-validation" action="includes/add-post-handel.php" method="post">
+                    <form class="custom-validation" action="includes/add-post-handel.php" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label>Post Title</label>
                             <input type="text" name="postTitle" class="form-control" required placeholder="Post title"/>
@@ -77,6 +77,13 @@ include 'includes/helper-func.php';
                                         echo "No Org Found";
                                     }
                                 ?>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label>Files</label>
+                            <div>
+                                <input type="file" multiple name="files[]" id="">
                             </div>
                         </div>
 

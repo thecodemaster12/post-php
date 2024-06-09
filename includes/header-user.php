@@ -61,7 +61,7 @@ $userInfo = mysqli_fetch_assoc($result);
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="dashboard.php" class="logo logo-dark">
+                            <a href="user-dashboard.php" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm.png" alt="logo-sm" height="22">
                                 </span>
@@ -70,7 +70,7 @@ $userInfo = mysqli_fetch_assoc($result);
                                 </span>
                             </a>
 
-                            <a href="dashboard.php" class="logo logo-light">
+                            <a href="user-dashboard.php" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm.png" alt="logo-sm-light" height="22">
                                 </span>

@@ -106,6 +106,20 @@ function getPost($postId, $conn) {
     return $result;
 }
 
+
+function getFiles($postId, $conn) {
+    $sql = "SELECT * FROM post_files WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function getPostId($postTitle,$postOrg,$conn) {
+    $sql = "SELECT post_id FROM posts WHERE post_title = '$postTitle' AND post_by = $postOrg";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['post_id'];
+}
+
 function isNotAdmin($adminEmail, $adminPass, $conn) {
     $sql = "SELECT * FROM admins";
     $result = mysqli_query($conn, $sql);
@@ -132,4 +146,33 @@ function isNotUser($userEmail, $userPass, $conn) {
         return true;
     }
 
+}
+
+function addFileToDB($fileName, $postId, $conn) {
+    $sql = "INSERT INTO post_files (post_files_names, post_id) VALUE ('$fileName', $postId)";
+    mysqli_query($conn, $sql);
+}
+
+function uploadFiles($files, $postTitle, $postId, $conn) {
+    $path = "../uploads/";
+
+    // mkdir($path, 0777, true);
+
+        // highlight_string(var_export($files, true));
+
+        // echo $files['name'][0];
+
+    foreach($files['tmp_name'] as $key => $tmp_name){
+        $file_name = $files['name'][$key];
+        $file_size = $files['size'][$key];
+        $file_tmp = $files['tmp_name'][$key];
+        $file_type = $files['type'][$key];
+
+        
+        $new_file_name = $postTitle.'_'.uniqid().'_'.$file_name;
+        addFileToDB($new_file_name, $postId, $conn);
+
+        // Move the uploaded file to the specified directory with the new file name
+        move_uploaded_file($file_tmp, $path.$new_file_name);
+    }
 }

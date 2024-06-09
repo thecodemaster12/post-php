@@ -1,7 +1,7 @@
 <?php
     session_start();
-    if (!empty($_SESSION['admin'])){
-        header("Location: dashboard.php");
+    if (!empty($_SESSION['user'])){
+        header("Location: user-dashboard.php");
     }
 ?>
 <!doctype html>
