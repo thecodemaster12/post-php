@@ -80,7 +80,14 @@ include 'includes/header-user.php';
                     $postList = getPostList($userInfo['user_org'],$conn);
 
                     if (mysqli_num_rows($postList) > 0) {
-                        echo "<ul class='py-4 px-0 m-0'>";
+                        echo "<ul class='py-4 px-0 m-0'>
+                                <li class='post-list-grid m-0'>
+                                    <div class='word-wrap'>Post Title</div>
+                                    <div class='word-wrap'>Project Title</div>
+                                    <div class='word-wrap'>Post Details</div>
+                                    <div class='word-wrap'>Date</div>
+                                </li>
+                        ";
                         while ($row = mysqli_fetch_assoc($postList)) {
                             echo "
                             <a class='text-secondary user-post-list' href='user-view-post.php?postId=".$row['post_id']."'>

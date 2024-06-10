@@ -74,10 +74,17 @@ function getOrgList($orgId, $conn) {
     }
 }
 
-function getUserList($conn) {
-    $sql = "SELECT * FROM users";
-    $result = mysqli_query($conn, $sql);
-    return $result;
+function getUserList($userId, $conn) {
+    if ($userId == null) {
+        $sql = "SELECT * FROM users";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+    else {
+        $sql = "SELECT * FROM users WHERE user_id = $userId";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
 }
 
 function getUserId($userEmail, $conn) {
@@ -182,9 +189,46 @@ function deletePost($id, $conn) {
     $result = mysqli_query($conn, $sql);
 }
 
+function updateUser($userId, $userName, $userEmail, $userOrg , $conn) {
+    $sql = "UPDATE users SET user_name='$userName', user_email='$userEmail', user_org=$userOrg WHERE user_id = $userId";
+    $result = mysqli_query($conn, $sql);
+}
+
 
 function getTrashList($conn) {
     $sql = "SELECT * FROM posts WHERE post_status = 0";
     $result = mysqli_query($conn, $sql);
     return $result;
+}
+
+function truncatePostContent($content, $length = 100, $ellipsis = '...') {
+    // Trim the content to the specified length
+    $truncatedContent = mb_substr($content, 0, $length);
+
+    // Add ellipsis if the content was truncated
+    if (mb_strlen($content) > $length) {
+        $truncatedContent .= $ellipsis;
+    }
+
+    return $truncatedContent;
+}
+
+
+function updateOrg($orgId, $orgName, $orgAddress, $conn) {
+    $sql = "UPDATE organizations SET org_name='$orgName',org_address='$orgAddress' WHERE org_id = $orgId";
+    $result = mysqli_query($conn, $sql);
+}
+
+function restorePost($postId, $conn) {
+    $sql = "UPDATE posts SET post_status=1 WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+}
+
+function deletePostForEver($postId, $conn) {
+    $sql = "DELETE FROM posts WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+}
+function deleteAllPostForEver($conn) {
+    $sql = "DELETE FROM posts WHERE post_status = 0";
+    $result = mysqli_query($conn, $sql);
 }

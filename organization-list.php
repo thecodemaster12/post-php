@@ -1,6 +1,11 @@
 <?php
 include 'includes/header.php';
 include 'includes/helper-func.php';
+
+
+if (isset($_GET['orgId'])) {
+    // deletePost($_GET['orgId'], $conn);
+}
 ?>
 
 
@@ -36,7 +41,7 @@ include 'includes/helper-func.php';
                         $orgList =  getOrgList(null, $conn);
                         if (mysqli_num_rows($orgList) > 0) {
                             $count = 1;
-                            echo "<table class='text-center table table-hover mb-0'>
+                            echo "<div class='w-100 overflow-auto'> <table class='text-center table table-hover mb-0'>
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -51,13 +56,13 @@ include 'includes/helper-func.php';
                                     <td>".$row ['org_name']."</td>
                                     <td>".$row ['org_address']."</td>
                                     <td>
-                                        <a href='".$row ['org_id']."'>Update</a>
-                                        <a href='".$row ['org_id']."'>Delete</a>
+                                        <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?orgId=".$row ['org_id']."'>Update</a>
+                                        <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?orgId=".$row ['org_id']."'>Delete</a>
                                     </td>
                                 </tr>";
                                 $count++;
                                 } 
-                            echo "</table>";
+                            echo "</table> </div>";
                         }
                         else {
                             echo "<p class='text-center fs-4'>No organizations 😔</p>";

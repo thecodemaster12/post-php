@@ -58,7 +58,7 @@ include 'includes/helper-func.php';
                             <p class="text-truncate font-size-14 mb-2">Total Users</p>
                             <h4 class="mb-2">
                             <?php 
-                                    $userList = getUserList($conn);
+                                    $userList = getUserList(null, $conn);
                                     echo mysqli_num_rows($userList);
                                     mysqli_free_result($userList);
                                 ?>

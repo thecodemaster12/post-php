@@ -33,10 +33,10 @@ include 'includes/helper-func.php';
                     <p class="card-title-desc">Some Text</p>    
                     
                     <?php
-                        $userList =  getUserList($conn);
+                        $userList =  getUserList(null, $conn);
                         if (mysqli_num_rows($userList) > 0) {
                             $count = 1;
-                            echo "<table class='text-center table table-hover mb-0'>
+                            echo "<div class='w-100 overflow-auto'> <table class='text-center table overflow-y-auto table-hover mb-0'>
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -53,13 +53,13 @@ include 'includes/helper-func.php';
                                     <td>".$row ['user_email']."</td>
                                     <td>".getOrgList($row['user_org'],$conn)."</td>
                                     <td>
-                                        <a href='".$row ['user_id']."'>Update</a>
-                                        <a href='".$row ['user_id']."'>Delete</a>
+                                        <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?userId=".$row ['user_id']."'>Update</a>
+                                        <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?userId=".$row ['user_id']."'>Delete</a>
                                     </td>
                                 </tr>";
                                 $count++;
                                 } 
-                            echo "</table>";
+                            echo "</table> </div>";
                         }
                         else {
                             echo "<p class='text-center fs-4'>No users 😔</p>";

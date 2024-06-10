@@ -2,8 +2,14 @@
 include 'includes/header.php';
 include 'includes/helper-func.php';
 
-if (isset($_GET['postId'])) {
-    deletePost($_GET['postId'], $conn);
+if (isset($_GET['restore'])) {
+    restorePost($_GET['restore'], $conn);
+}
+if (isset($_GET['deleteFE'])) {
+    deletePostForEver($_GET['deleteFE'], $conn);
+}
+if (isset($_GET['emptyTrash'])) {
+    deleteAllPostForEver($conn);
 }
 ?>
 
@@ -14,12 +20,12 @@ if (isset($_GET['postId'])) {
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Post List</h4>
+                <h4 class="mb-sm-0">Trash List</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                        <li class="breadcrumb-item active">Post List</li>
+                        <li class="breadcrumb-item active">Trash List</li>
                     </ol>
                 </div>
 
@@ -33,17 +39,17 @@ if (isset($_GET['postId'])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Post List</h4>
+                    <h4 class="card-title">Trash List</h4>
                     <p class="card-title-desc">Some Text</p>
                     <div class="text-end">
                         <?php
                         $trashList = getTrashList($conn);
                             if (mysqli_num_rows($trashList) > 0) {
-                                echo "<a href='trash.php?trash=post' class='d-inline-block bg-danger text-white p-2 rounded-2'>Empty (".mysqli_num_rows($trashList)." items) ?</a>";
+                                echo "<a href='trash.php?emptyTrash=post' class='d-inline-block bg-danger text-white p-2 rounded-2'>Empty (".mysqli_num_rows($trashList)." items) ?</a>";
                                 # code...
                             }
                         ?>
-                    </div>    
+                    </div>   
                     
                     <?php
                         $trashList =  getTrashList( $conn);
@@ -52,24 +58,24 @@ if (isset($_GET['postId'])) {
                             echo "<table class='text-center table table-hover mb-0'>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Post Title</th>
-                                        <th>Project Name</th>
-                                        <th>Post Details</th>
-                                        <th>Posted By</th>
-                                        <th>Actions</th>
+                                        <th width='50px'>#</th>
+                                        <th width='150px'>Post Title</th>
+                                        <th width='150px'>Project Name</th>
+                                        <th width='400px'>Post Details</th>
+                                        <th width='150px'>Posted By</th>
+                                        <th width='100px'>Actions</th>
                                     </tr>
                                 </thead>";
                                 while ($row = mysqli_fetch_assoc($trashList)) {
                                     echo "<tr>
-                                    <th>".$count."</th>
-                                    <td>".$row ['post_title']."</td>
-                                    <td>".$row ['project_name']."</td>
-                                    <td>".$row ['post_details']."</td>
-                                    <td>".getOrgList($row ['post_by'], $conn)."</td>
-                                    <td>
-                                        <a href='".$row ['post_id']."'>Restore</a>
-                                        <a href='".htmlspecialchars($_SERVER['PHP_SELF'])."?postId=".$row ['post_id']."'>Delete</a>
+                                    <th width='50px'>".$count."</th>
+                                    <td width='150px'>".$row['post_title']."</td>
+                                    <td width='150px'>".$row['project_name']."</td>
+                                    <td width='400px'>".truncatePostContent($row['post_details'])."</td>
+                                    <td width='150px'>".getOrgList($row ['post_by'], $conn)."</td>
+                                    <td width='100px'>
+                                        <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?restore=".$row ['post_id']."'>Restore</a>
+                                        <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?deleteFE=".$row ['post_id']."'>Delete</a>
                                     </td>
                                 </tr>";
                                 $count++;
@@ -77,7 +83,7 @@ if (isset($_GET['postId'])) {
                             echo "</table>";
                         }
                         else {
-                            echo "<p class='text-center fs-4'>No posts 😔</p>";
+                            echo "<p class='text-center fs-4'>Trash is empty 😊</p>";
                         }
                     ?>
 

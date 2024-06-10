@@ -80,11 +80,11 @@ include 'includes/helper-func.php';
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div id="fileInputArea" class="row mb-3">
                             <label>Files</label>
-                            <div>
-                                <input type="file" multiple name="files[]" id="">
-                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" id="addInputFile" class='btn btn-info'>Add Files</button>
                         </div>
 
                         <div class="mb-0">
