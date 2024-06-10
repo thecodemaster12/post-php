@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2024 at 10:44 AM
+-- Generation Time: Jun 10, 2024 at 02:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,8 @@ INSERT INTO `organizations` (`org_id`, `org_name`, `org_address`, `created_at`) 
 (10, 'Robi', 'Dhaka', '2024-06-05 17:26:09'),
 (11, 'Grameenphone', 'Dhaka', '2024-06-05 17:26:18'),
 (12, 'Teletalk', 'Dhaka', '2024-06-05 17:26:25'),
-(13, 'Dnet', 'Dhaka', '2024-06-06 12:23:12');
+(13, 'Dnet', 'Dhaka', '2024-06-06 12:23:12'),
+(14, 'Dne', 'Dhaka', '2024-06-10 13:00:54');
 
 -- --------------------------------------------------------
 
@@ -79,24 +80,28 @@ CREATE TABLE `posts` (
   `project_name` varchar(100) NOT NULL,
   `post_details` varchar(255) NOT NULL,
   `post_by` int(5) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `post_status` int(6) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `post_title`, `project_name`, `post_details`, `post_by`, `created_at`) VALUES
-(5, 'Airtel Post 1', 'Airtel Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-01 15:25:37'),
-(6, 'Banglalink Post 1', 'Banglalink Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 9, '2024-05-15 15:28:25'),
-(7, 'Airtel Post 2', 'Airtel Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-19 15:28:52'),
-(8, 'Banglalink Post 2', 'Banglalink Project 2', 'fljaldknlfansdfl dsjflkajsdlfkjasdfo dlfnadlflakdsjf', 9, '2024-05-25 14:49:48'),
-(9, 'Robi Post 1', 'Robi Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-01 15:11:20'),
-(10, 'Robi Post 2', 'Robi Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-05 15:11:31'),
-(11, 'Teletalk Post 1', 'Teletalk Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:01'),
-(12, 'Teletalk Post 2', 'Teletalk Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:15'),
-(22, 'Post with Files', 'Project #', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 11:52:43'),
-(23, 'Post without Files', 'Project $', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 12:00:01');
+INSERT INTO `posts` (`post_id`, `post_title`, `project_name`, `post_details`, `post_by`, `created_at`, `post_status`) VALUES
+(5, 'Airtel Post 1', 'Airtel Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-01 15:25:37', 0),
+(6, 'Banglalink Post 1', 'Banglalink Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 9, '2024-05-15 15:28:25', 1),
+(7, 'Airtel Post 2', 'Airtel Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-05-19 15:28:52', 1),
+(9, 'Robi Post 1', 'Robi Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-01 15:11:20', 1),
+(10, 'Robi Post 2', 'Robi Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 10, '2024-06-05 15:11:31', 1),
+(11, 'Teletalk Post 1', 'Teletalk Project 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:01', 1),
+(12, 'Teletalk Post 2', 'Teletalk Project 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 12, '2024-06-07 15:12:15', 1),
+(22, 'Post with Files', 'Project #', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 11:52:43', 1),
+(23, 'Post without Files', 'Project $', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h', 8, '2024-06-09 12:00:01', 1),
+(24, 'Dummy', 'Dummy Project', 'sdfsdfasfafasdf', 9, '2024-06-09 16:28:45', 1),
+(25, 'Airtel Post ', 'Airtel Project 1', '                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to', 8, '2024-06-10 13:12:07', 1),
+(30, 'New Post', 'New Project With Media', 's', 8, '2024-06-10 17:24:19', 1),
+(31, 'New Post', 'New Project With Media', 's', 8, '2024-06-10 17:57:05', 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +122,11 @@ CREATE TABLE `post_files` (
 
 INSERT INTO `post_files` (`post_files_id`, `post_files_names`, `post_id`, `created_at`) VALUES
 (9, 'Post with Files_6665432b16559_[JavaScript The Good Parts 1st Edition by Douglas Crockford - 2008].pdf', 22, '2024-06-09 11:52:43'),
-(10, 'Post with Files_6665432b17007_majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai.jpg', 22, '2024-06-09 11:52:43');
+(10, 'Post with Files_6665432b17007_majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai.jpg', 22, '2024-06-09 11:52:43'),
+(11, 'Dummy_666583dd20e70_[JavaScript The Good Parts 1st Edition by Douglas Crockford - 2008].pdf', 24, '2024-06-09 16:28:45'),
+(12, 'Dummy_666583dd218b5_majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai.jpg', 24, '2024-06-09 16:28:45'),
+(13, 'New Post_6666e263d3f8d_majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai.jpg', 30, '2024-06-10 17:24:19'),
+(14, 'New Post_6666e263d49f5_[JavaScript The Good Parts 1st Edition by Douglas Crockford - 2008].pdf', 30, '2024-06-10 17:24:19');
 
 -- --------------------------------------------------------
 
@@ -194,19 +203,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `org_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `org_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `post_files_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `post_files_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
