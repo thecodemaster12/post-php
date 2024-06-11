@@ -27,16 +27,18 @@ if (isset($_SERVER['REQUEST_METHOD']) == "POST") {
         exit();
     }
 
-    // if (isPassMismatched($userPass, $userConfPass)) {
-    //     $_SESSION['update-error'] = "Password didn't matched";
-    //     header("Location: ../update-post.php?userId=$userId");
-    //     exit();
-    // }
+    if (isPassMismatched($userPass, $userConfPass)) {
+        $_SESSION['update-error'] = "Password didn't matched";
+        header("Location: ../update-post.php?userId=$userId");
+        exit();
+    }
 
     // $userPass = password_hash($userConfPass, PASSWORD_DEFAULT);
+    $userPass = encrypt($userConfPass, $userName);
 
-    updateUser($userId,$userName, $userEmail, $userOrg , $conn);
-    header("Location: ../user-list.php");
+    updateUser($userId,$userName, $userEmail, $userOrg, $userPass , $conn);
+    $_SESSION['update-success'] = "User Updated";
+    header("Location: ../update-post.php?userId=".$userId);
     exit();
     
     }

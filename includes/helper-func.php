@@ -96,7 +96,7 @@ function getUserId($userEmail, $conn) {
 
 function getPostList($orgId, $conn) {
     if ($orgId == null) {
-        $sql = "SELECT * FROM posts WHERE post_status = 1";
+        $sql = "SELECT * FROM posts  WHERE post_status = 1 ORDER BY created_at DESC";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -108,7 +108,7 @@ function getPostList($orgId, $conn) {
 }
 
 function getPost($postId, $conn) {
-    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_id = $postId";
+    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_id = $postId ORDER BY created_at DESC";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -189,8 +189,8 @@ function deletePost($id, $conn) {
     $result = mysqli_query($conn, $sql);
 }
 
-function updateUser($userId, $userName, $userEmail, $userOrg , $conn) {
-    $sql = "UPDATE users SET user_name='$userName', user_email='$userEmail', user_org=$userOrg WHERE user_id = $userId";
+function updateUser($userId, $userName, $userEmail, $userOrg, $userPass, $conn) {
+    $sql = "UPDATE users SET user_name='$userName', user_email='$userEmail', user_org=$userOrg, user_pass='$userPass' WHERE user_id = $userId";
     $result = mysqli_query($conn, $sql);
 }
 
@@ -241,4 +241,22 @@ function deleteAllPostForEver($conn) {
 function deletePostFile($postFileId, $conn) {
     $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
     $result = mysqli_query($conn, $sql);
+}
+
+function encrypt($data, $name) {
+    $method = "AES-256-CBC";
+    $key = $name;
+    $options = 0;
+    $iv = '1234567891011129';
+    $encryptedData = openssl_encrypt($data, $method, $key, $options,$iv);
+    return $encryptedData;
+}
+
+function decrypt($encryptData, $name) {
+    $method = "AES-256-CBC";
+    $key = $name;
+    $options = 0;
+    $iv = '1234567891011129';
+    $decryptedData = openssl_decrypt($encryptData, $method, $key, $options,$iv);
+    return $decryptedData;
 }

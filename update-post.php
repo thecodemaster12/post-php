@@ -191,6 +191,10 @@ include 'includes/helper-func.php';
                                 echo "<span class='text-danger'>".$_SESSION['update-error']."</span>";
                                 unset($_SESSION['update-error']);
                             }
+                            if (!empty($_SESSION['update-success'])) {
+                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                unset($_SESSION['update-success']);
+                            }
                         ?>
                     </p>
 
@@ -216,10 +220,10 @@ include 'includes/helper-func.php';
                         <div class="mb-3">
                             <label>Password</label>
                             <div>
-                                <input type="password" value="<?php echo $row['user_pass']?>" name="userPass" id="pass2" class="form-control" required placeholder="Password"/>
+                                <input type="text" value="<?php echo decrypt($row['user_pass'], $row['user_name'])?>" name="userPass" id="pass2" class="form-control" required placeholder="Password"/>
                             </div>
                             <div class="mt-2">
-                                <input type="password" value="<?php echo $row['user_pass']?>" name="userConfPass" class="form-control" required data-parsley-equalto="#pass2" placeholder="Re-Type Password"/>
+                                <input type="text" value="<?php echo decrypt($row['user_pass'], $row['user_name'])?>" name="userConfPass" class="form-control" required data-parsley-equalto="#pass2" placeholder="Re-Type Password"/>
                             </div>
                         </div>
 

@@ -121,16 +121,16 @@ $userInfo = mysqli_fetch_assoc($result);
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
-                                    alt="Header Avatar">
+                                <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                                    alt="Header Avatar"> -->
                                 <span class="d-none d-xl-inline-block ms-1"> <?php echo $userInfo['user_name']?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                                <a class="dropdown-item" href='<?php echo "user-profile.php?userId=".$userInfo['user_id'] ?>'><i class="ri-user-line align-middle me-1"></i> Profile</a>
 
-                                <a class="dropdown-item text-danger" href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?logout'?>"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']).'?logout'?>"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
 
