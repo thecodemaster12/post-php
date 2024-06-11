@@ -144,8 +144,9 @@ function isNotUser($userEmail, $userPass, $conn) {
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {        
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($userPass, $row['user_pass']))
+        if (decrypt($userPass, $userEmail) == $userPass){
             return false;
+        }
         else
             return true;
     }
@@ -189,6 +190,7 @@ function deletePost($id, $conn) {
     $result = mysqli_query($conn, $sql);
 }
 
+
 function updateUser($userId, $userName, $userEmail, $userOrg, $userPass, $conn) {
     $sql = "UPDATE users SET user_name='$userName', user_email='$userEmail', user_org=$userOrg, user_pass='$userPass' WHERE user_id = $userId";
     $result = mysqli_query($conn, $sql);
@@ -231,16 +233,33 @@ function restorePost($postId, $conn) {
 
 function deletePostForEver($postId, $conn) {
     $sql = "DELETE FROM posts WHERE post_id = $postId";
-    $result = mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
 }
-function deleteAllPostForEver($conn) {
-    $sql = "DELETE FROM posts WHERE post_status = 0";
+
+function deleteUser($userId, $conn) {
+    $sql = "DELETE FROM users WHERE user_id = $userId";
     $result = mysqli_query($conn, $sql);
 }
 
-function deletePostFile($postFileId, $conn) {
-    $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
+function deleteAllPostForEver($conn) {
+    $sql = "SELECT post_id FROM posts WHERE post_status = 0";
     $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        deletePostFile(null,$row['post_id'],$conn);
+    }
+    mysqli_free_result($result);
+    $sql = "DELETE FROM posts WHERE post_status = 0";
+}
+
+function deletePostFile($postFileId, $postId, $conn) {
+    if ($postId == null) {
+        $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
+        $result = mysqli_query($conn, $sql);
+    }
+    if ($postFileId == null) {
+        $sql = "DELETE FROM post_files WHERE post_id = $postId";
+        $result = mysqli_query($conn, $sql);
+    }
 }
 
 function encrypt($data, $name) {

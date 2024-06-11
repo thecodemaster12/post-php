@@ -1,6 +1,10 @@
 <?php
 include 'includes/header.php';
 include 'includes/helper-func.php';
+
+if (isset($_GET['userId'])) {
+    deleteUser($_GET['userId'],$conn);
+}
 ?>
 
 

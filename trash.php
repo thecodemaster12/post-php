@@ -9,7 +9,8 @@ if (isset($_GET['deleteFE'])) {
     deletePostForEver($_GET['deleteFE'], $conn);
 }
 if (isset($_GET['emptyTrash'])) {
-    deleteAllPostForEver($conn);
+    // deleteAllPostForEver($conn);
+    echo $_GET['emptyTrash'];
 }
 ?>
 
@@ -63,16 +64,19 @@ if (isset($_GET['emptyTrash'])) {
                                         <th width='150px'>Project Name</th>
                                         <th width='400px'>Post Details</th>
                                         <th width='150px'>Posted By</th>
+                                        <th width='150px'>Attachment</th>
                                         <th width='100px'>Actions</th>
                                     </tr>
                                 </thead>";
                                 while ($row = mysqli_fetch_assoc($trashList)) {
+                                    $postFIle = getFiles($row ['post_id'], $conn);
                                     echo "<tr>
                                     <th width='50px'>".$count."</th>
                                     <td width='150px'>".$row['post_title']."</td>
                                     <td width='150px'>".$row['project_name']."</td>
                                     <td width='400px'>".truncatePostContent($row['post_details'])."</td>
                                     <td width='150px'>".getOrgList($row ['post_by'], $conn)."</td>
+                                    <td width='150px'>".mysqli_num_rows($postFIle)." files</td>
                                     <td width='100px'>
                                         <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?restore=".$row ['post_id']."'>Restore</a>
                                         <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?deleteFE=".$row ['post_id']."'>Delete</a>

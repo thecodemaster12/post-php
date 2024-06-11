@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
         // $userPass = password_hash($userConfPass, PASSWORD_DEFAULT);
 
-        $userPass = encrypt($userConfPass, $userName);
+        $userPass = encrypt($userConfPass, $userEmail);
     
         addUser($userName, $userEmail, $userPass, $userOrg , $conn);
         $_SESSION['add-user-success'] = "User Added";
