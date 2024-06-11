@@ -28,5 +28,5 @@ include './includes/header-user.php';
 </div>
 
 <?php
-include './includes/footer-user.php';
+include './includes/footer.php';
 ?>

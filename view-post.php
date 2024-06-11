@@ -94,5 +94,5 @@ if (isset($_GET['postId'])) {
 </div>
 
 <?php
-include 'includes/footer-user.php';
+include 'includes/footer.php';
 ?>
