@@ -194,6 +194,11 @@ function updateUser($userId, $userName, $userEmail, $userOrg , $conn) {
     $result = mysqli_query($conn, $sql);
 }
 
+function updatePost($postId, $postTitle, $projectName, $postDetails, $postOrg, $conn) {
+    $sql = "UPDATE posts SET post_title='$postTitle',project_name='$projectName',post_details='$postDetails',post_by=$postOrg WHERE post_id=$postId";
+    $result = mysqli_query($conn, $sql);
+}
+
 
 function getTrashList($conn) {
     $sql = "SELECT * FROM posts WHERE post_status = 0";
@@ -230,5 +235,10 @@ function deletePostForEver($postId, $conn) {
 }
 function deleteAllPostForEver($conn) {
     $sql = "DELETE FROM posts WHERE post_status = 0";
+    $result = mysqli_query($conn, $sql);
+}
+
+function deletePostFile($postFileId, $conn) {
+    $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
     $result = mysqli_query($conn, $sql);
 }

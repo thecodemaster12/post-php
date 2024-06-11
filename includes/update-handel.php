@@ -38,10 +38,25 @@ if (isset($_SERVER['REQUEST_METHOD']) == "POST") {
     updateUser($userId,$userName, $userEmail, $userOrg , $conn);
     header("Location: ../user-list.php");
     exit();
-
+    
     }
     // Update Post
     if (!empty($_POST['updatePostId'])) {
-        # code...
+        $postId = $_POST['updatePostId'];
+        $postTitle = htmlspecialchars($_POST['postTitle']);
+        $projectName = htmlspecialchars($_POST['projectName']);
+        $postDetails = htmlspecialchars($_POST['postDetails']);
+        $postOrg = htmlspecialchars($_POST['postOrg']);
+
+        updatePost($postId, $postTitle, $projectName, $postDetails, $postOrg, $conn);
+        
+        if (!empty($_FILES['files']['name'][0])) {
+            $postId = getPostId($postTitle,$postOrg,$conn);
+            uploadFiles($_FILES['files'],$postTitle, $postId ,$conn);
+        }
+        
+        header("Location: ../update-post.php?postId=".$postId);
+        $_SESSION['update-success'] = "Post Updated";
+        exit();
     }
 }

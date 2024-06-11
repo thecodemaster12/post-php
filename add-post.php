@@ -43,7 +43,7 @@ include 'includes/helper-func.php';
                         ?>
                     </p>
 
-                    <form class="custom-validation" action="includes/add-post-handel.php" method="post" enctype="multipart/form-data">
+                    <form class="custom-validation" action="includes/add-handel.php" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label>Post Title</label>
                             <input type="text" name="postTitle" class="form-control" required placeholder="Post title"/>

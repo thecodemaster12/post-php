@@ -42,7 +42,7 @@ include 'includes/header.php';
                         ?>
                     </p>
 
-                    <form class="custom-validation" action="includes/add-organization-handel.php" method="post">
+                    <form class="custom-validation" action="includes/add-handel.php" method="post">
                         <div class="mb-3">
                             <label>Name of the Organization</label>
                             <input type="text" name="orgName" class="form-control" required placeholder="Organization Name"/>

@@ -53,7 +53,7 @@ include 'includes/helper-func.php';
                             TODO Form Start
                         */
                     -->
-                    <form class="custom-validation" action="includes/add-user-handel.php" method="post">
+                    <form class="custom-validation" action="includes/add-handel.php" method="post">
                         <div class="mb-3">
                             <label>User Name</label>
                             <input type="text" name="userName" class="form-control" required placeholder="Name"/>

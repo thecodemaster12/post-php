@@ -1,6 +1,7 @@
 <?php
 include 'includes/header.php';
 include 'includes/helper-func.php';
+
 ?>
 
 <!-- For Post Edit -->
@@ -33,13 +34,21 @@ include 'includes/helper-func.php';
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    
+                <p class="card-title-desc text-center">
+                        <?php
+                            if (!empty($_SESSION['update-success'])) {
+                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                unset($_SESSION['update-success']);
+                            }
+                        ?>
+                    </p>
                     <?php
                         $post =  getPost($postId, $conn);
                         if (mysqli_num_rows($post) > 0) {
                             while ($row = mysqli_fetch_assoc($post)) {
                             ?>
-                    <form class="custom-validation" action="includes/add-post-handel.php" method="post" enctype="multipart/form-data">
+                    <form class="custom-validation" action="includes/update-handel.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="updatePostId" value="<?php echo $row['post_id']?>">
                         <div class="mb-3">
                             <label>Post Title</label>
                             <input type="text" value="<?php echo $row['post_title'] ?>" name="postTitle" class="form-control" required placeholder="Post title"/>
@@ -76,6 +85,7 @@ include 'includes/helper-func.php';
                                     else {
                                         echo "No Org Found";
                                     }
+                                    
                                 ?>
                             </div>
                         </div>
@@ -84,11 +94,15 @@ include 'includes/helper-func.php';
                             <label>Files</label>
                             <div>
                             <?php
+                            if (isset($_GET['postFileId'])) {
+                                deletePostFile($_GET['postFileId'], $conn);
+                                unlink(dirname(__FILE__) . "/uploads/" . $_GET['postFileName']);
+                            }
                                 $postFiles = getFiles($_GET['postId'], $conn);
                                 if (mysqli_num_rows($postFiles) > 0) {
                                     while ($row = mysqli_fetch_assoc($postFiles) ) {
                                         // echo "<a class='d-inline-block m-1' href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a> <button type='button' class='btn btn-danger'>X</button><br>";
-                                        echo "<div class='mb-2'><a href='uploads/".$row['post_files_names']."'>New Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With MediaNew Project With Media</a> <button type='button' class='btn btn-danger'>X</button></div>";
+                                        echo "<div class='d-flex justify-content-between align-items-center mb-2'><a href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a> <a href='".$_SERVER['PHP_SELF']."?postFileId=".$row['post_files_id']."&postId=".$postId."&postFileName=".$row['post_files_names']."' type='button' class='btn btn-danger'>X</a></div>";
                                     }
                                 }
                                 else
@@ -129,7 +143,7 @@ include 'includes/helper-func.php';
 
 </div>        
         <?php
-    }
+}
 ?>
 
 <!-- For User Edit -->
