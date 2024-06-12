@@ -10,7 +10,8 @@ if (!empty($_POST['updateOrgId'])) {
     $orgAddress = $_POST['orgAddress'];
 
     updateOrg($orgId, $orgName, $orgAddress, $conn);
-    header("Location: ../organization-list.php");
+    $_SESSION['update-success'] = "Updated";
+    header("Location: ../update-post.php?orgId=". $orgId);
 }
 // Update User
 if (!empty($_POST['updateUserId'])) {
@@ -89,7 +90,7 @@ if (!empty($_POST['updateUserProfileId'])) {
     $userPass = encrypt($userConfPass, $userEmail);
 
     updateUser($userId,$userName, $userEmail, $userOrg, $userPass , $conn);
-    $_SESSION['update-success'] = "User Updated";
+    $_SESSION['update-success'] = "Profile Updated";
     header("Location: ../user-profile.php?userId=".$userId);
     exit();
 

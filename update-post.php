@@ -316,13 +316,9 @@ if (isset($_GET['orgId'])) {
                     <h4 class="card-title">Add Organization</h4>
                     <p class="card-title-desc text-center">
                     <?php
-                            if (!empty($_SESSION['add-org-error'])) {
-                                echo "<span class='text-danger'>".$_SESSION['add-org-error']."</span>";
-                                unset($_SESSION['add-org-error']);
-                            }
-                            elseif(!empty($_SESSION['add-org-success'])){
-                                echo "<span class='text-success'>".$_SESSION['add-org-success']."</span>";
-                                unset($_SESSION['add-org-success']);
+                            if (!empty($_SESSION['update-success'])) {
+                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                unset($_SESSION['update-success']);
                             }
                         ?>
                     </p>

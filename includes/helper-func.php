@@ -101,14 +101,14 @@ function getPostList($orgId, $conn) {
         return $result;
     }
     else {
-        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_by = $orgId";
+        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_by = $orgId";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
 }
 
 function getPost($postId, $conn) {
-    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y') AS post_date FROM posts WHERE post_id = $postId ORDER BY created_at DESC";
+    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_id = $postId ORDER BY created_at DESC";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
