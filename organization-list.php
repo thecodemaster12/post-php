@@ -4,7 +4,7 @@ include 'includes/helper-func.php';
 
 
 if (isset($_GET['orgId'])) {
-    // deletePost($_GET['orgId'], $conn);
+    deleteOrg($_GET['orgId'], $conn);
 }
 ?>
 

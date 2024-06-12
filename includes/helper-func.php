@@ -76,7 +76,7 @@ function getOrgList($orgId, $conn) {
 
 function getUserList($userId, $conn) {
     if ($userId == null) {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE user_active = 1";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -142,9 +142,10 @@ function isNotAdmin($adminEmail, $adminPass, $conn) {
 function isNotUser($userEmail, $userPass, $conn) {
     $sql = "SELECT * FROM users WHERE user_email = '$userEmail'";
     $result = mysqli_query($conn, $sql);
+
     if (mysqli_num_rows($result) > 0) {        
         $row = mysqli_fetch_assoc($result);
-        if (decrypt($userPass, $userEmail) == $userPass){
+        if (decrypt($row['user_pass'], $userEmail) == $userPass){
             return false;
         }
         else
@@ -231,36 +232,55 @@ function restorePost($postId, $conn) {
     $result = mysqli_query($conn, $sql);
 }
 
-function deletePostForEver($postId, $conn) {
-    $sql = "DELETE FROM posts WHERE post_id = $postId";
-    mysqli_query($conn, $sql);
-}
 
 function deleteUser($userId, $conn) {
     $sql = "DELETE FROM users WHERE user_id = $userId";
     $result = mysqli_query($conn, $sql);
 }
 
+function deletePostFileByID($postFileId, $conn) {
+    $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
+    mysqli_query($conn, $sql);
+}
+
 function deleteAllPostForEver($conn) {
     $sql = "SELECT post_id FROM posts WHERE post_status = 0";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        deletePostFile(null,$row['post_id'],$conn);
+        deletePostFileLocation($row['post_id'],$conn);
+        deletePostForEver($row['post_id'],$conn);
     }
     mysqli_free_result($result);
-    $sql = "DELETE FROM posts WHERE post_status = 0";
 }
 
-function deletePostFile($postFileId, $postId, $conn) {
-    if ($postId == null) {
-        $sql = "DELETE FROM post_files WHERE post_files_id = $postFileId";
-        $result = mysqli_query($conn, $sql);
-    }
-    if ($postFileId == null) {
-        $sql = "DELETE FROM post_files WHERE post_id = $postId";
-        $result = mysqli_query($conn, $sql);
+
+function deletePostFileLocation($postId, $conn) {
+    $sql = "SELECT * FROM post_files WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        unlink(dirname(__FILE__) . "/../uploads/" . $row['post_files_names']);
+        deletePostFileByID($row['post_files_id'], $conn);
     }
 }
+
+function deletePostForEver($postId, $conn) {
+    $sql = "DELETE FROM posts WHERE post_id = $postId";
+    mysqli_query($conn, $sql);
+}
+
+function deleteOrg($orgId, $conn) {
+    $result = getPostList($orgId, $conn);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        deletePostFileLocation($row['post_id'], $conn);
+        deletePostForEver($row['post_id'], $conn);
+        // echo $row['post_id'];
+    }
+
+    $sql = "DELETE FROM organizations WHERE org_id = $orgId";
+    mysqli_query($conn, $sql);
+}
+
 
 function encrypt($data, $name) {
     $method = "AES-256-CBC";

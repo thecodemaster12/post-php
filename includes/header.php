@@ -16,7 +16,7 @@ if (isset($_GET['logout'])) {
     <head>
         
         <meta charset="utf-8" />
-        <title>Dashboard</title>
+        <title>Dashboard - Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -115,8 +115,8 @@ if (isset($_GET['logout'])) {
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
-                                    alt="Header Avatar">
+                                <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                                    alt="Header Avatar"> -->
                                 <span class="d-none d-xl-inline-block ms-1"> <?php echo $_SESSION['admin']?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>

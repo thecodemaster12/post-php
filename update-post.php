@@ -90,12 +90,23 @@ include 'includes/helper-func.php';
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+
+                        
+
+                        <div id="fileInputArea" class="row mb-3">
                             <label>Files</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="button" id="addInputFile" class='btn btn-info'>Add Files</button>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label>Previous Files</label>
                             <div>
                             <?php
                             if (isset($_GET['postFileId'])) {
-                                deletePostFile($_GET['postFileId'],null, $conn);
+                                deletePostFileByID($_GET['postFileId'], $conn);
                                 unlink(dirname(__FILE__) . "/uploads/" . $_GET['postFileName']);
                             }
                                 $postFiles = getFiles($_GET['postId'], $conn);
@@ -109,14 +120,6 @@ include 'includes/helper-func.php';
                                     echo "No was File Attached";
                             ?>
                             </div>
-                        </div>
-                        
-
-                        <div id="fileInputArea" class="row mb-3">
-                            <label>Files</label>
-                        </div>
-                        <div class="mb-3">
-                            <button type="button" id="addInputFile" class='btn btn-info'>Add Files</button>
                         </div>
 
                         <div class="mb-0">

@@ -1,5 +1,5 @@
 <?php
-
+include 'includes/db-con.php';
 function encrypt($data, $name) {
     $method = "AES-256-CBC";
     $key = $name;
@@ -18,11 +18,16 @@ function decrypt($encryptData, $name) {
     return $decryptedData;
 }
 
-// $data = "Shihab";
-// $name = "shihab";
+$data = "W2FBGR5aRLYrECO77r8h1g==";
+$name = "air@air.com";
 
-// $en = encrypt($data, $name);
-// $de = decrypt($en, $name);
+$en = encrypt($data, $name);
+$de = decrypt($data, $name);
+echo $de;
 
-// echo $en . "<br>";
-// echo $de;
+$sql = "SELECT * FROM users";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
+// echo $row['user_pass'];
+// echo $en;

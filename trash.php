@@ -6,11 +6,12 @@ if (isset($_GET['restore'])) {
     restorePost($_GET['restore'], $conn);
 }
 if (isset($_GET['deleteFE'])) {
+    deletePostFileLocation($_GET['deleteFE'], $conn);
     deletePostForEver($_GET['deleteFE'], $conn);
 }
 if (isset($_GET['emptyTrash'])) {
-    // deleteAllPostForEver($conn);
-    echo $_GET['emptyTrash'];
+    deleteAllPostForEver($conn);
+    // echo $_GET['emptyTrash'];
 }
 ?>
 
