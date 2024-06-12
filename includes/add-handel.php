@@ -23,7 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $postId = getPostId($postTitle,$postOrg,$conn);
             uploadFiles($_FILES['files'],$postTitle, $postId ,$conn);
         }
-    
+
+        if ($_FILES['hiddenFiles']['name'][0] !== "") {
+            $postId = getPostId($postTitle,$postOrg,$conn);
+            uploadHiddenFiles($_FILES['hiddenFiles'],$postTitle, $postId ,$conn);
+        }
+        
         $_SESSION['add-post-success'] = "Post Added";
         header("Location: ../add-post.php");
         exit();

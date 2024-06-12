@@ -101,7 +101,7 @@ function getPostList($orgId, $conn) {
         return $result;
     }
     else {
-        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_by = $orgId";
+        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_by = $orgId ORDER BY post_date DESC";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -116,6 +116,12 @@ function getPost($postId, $conn) {
 
 function getFiles($postId, $conn) {
     $sql = "SELECT * FROM post_files WHERE post_id = $postId";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function getUserFiles($postId, $conn) {
+    $sql = "SELECT * FROM post_files WHERE post_id = $postId AND privacy = 0";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -180,6 +186,35 @@ function uploadFiles($files, $postTitle, $postId, $conn) {
         
         $new_file_name = $postTitle.'_'.uniqid().'_'.$file_name;
         addFileToDB($new_file_name, $postId, $conn);
+
+        // Move the uploaded file to the specified directory with the new file name
+        move_uploaded_file($file_tmp, $path.$new_file_name);
+    }
+}
+
+function addHiddenFileToDB($fileName, $postId, $conn) {
+    $sql = "INSERT INTO post_files (post_files_names, post_id, privacy) VALUE ('$fileName', $postId, 1)";
+    mysqli_query($conn, $sql);
+}
+
+function uploadHiddenFiles($files, $postTitle, $postId, $conn) {
+    $path = "../uploads/";
+
+    // mkdir($path, 0777, true);
+
+        // highlight_string(var_export($files, true));
+
+        // echo $files['name'][0];
+
+    foreach($files['tmp_name'] as $key => $tmp_name){
+        $file_name = $files['name'][$key];
+        $file_size = $files['size'][$key];
+        $file_tmp = $files['tmp_name'][$key];
+        $file_type = $files['type'][$key];
+
+        
+        $new_file_name = $postTitle.'_'.uniqid().'_'.$file_name;
+        addHiddenFileToDB($new_file_name, $postId, $conn);
 
         // Move the uploaded file to the specified directory with the new file name
         move_uploaded_file($file_tmp, $path.$new_file_name);

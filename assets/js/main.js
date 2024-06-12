@@ -57,7 +57,7 @@ inputFileBtn.addEventListener('click', () => {
     privacy.addEventListener("click", function() {
         event.preventDefault();
         if (input.getAttribute('name') == "files[]") {
-            input.setAttribute("name", "privacy");
+            input.setAttribute("name", "hiddenFiles[]");
             privacy.textContent = "Show";
         }
         else{

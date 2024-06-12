@@ -43,7 +43,7 @@ include 'includes/helper-func.php';
                         ?>
                     </p>
 
-                    <form class="custom-validation" action="includes/check.php" method="post" enctype="multipart/form-data">
+                    <form class="custom-validation" action="includes/file-handel.php" method="post" enctype="multipart/form-data">
 
 
                         <div id="fileInputArea" class="row mb-3">

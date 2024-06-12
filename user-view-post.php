@@ -50,7 +50,7 @@ if (isset($_GET['postId'])) {
                         <p>Attachments</p>
                         <hr>
                         <?php
-                            $postFiles = getFiles($_GET['postId'], $conn);
+                            $postFiles = getUserFiles($_GET['postId'], $conn);
                             if (mysqli_num_rows($postFiles) > 0) {
                                 while ($row = mysqli_fetch_assoc($postFiles) ) {
                                     echo "<a download href='uploads/".$row['post_files_names']."'</a>".$row['post_files_names']."<br>";
