@@ -12,6 +12,29 @@
 // });
 
 
+// const inputFileBtn = document.getElementById('addInputFile');
+// const fileInputArea = document.getElementById('fileInputArea');
+
+// inputFileBtn.addEventListener('click', () => {
+//     var input = document.createElement("INPUT");
+//     var div = document.createElement("div");
+//     var cancelBtn = document.createElement("button");
+
+//     input.setAttribute("type", "file");
+//     input.setAttribute("name", "files[]");
+//     div.setAttribute("class", "mb-2");
+
+//     cancelBtn.textContent = "Cancel";
+//     cancelBtn.addEventListener("click", function() {
+//         div.remove(); 
+//     });
+
+//     fileInputArea.appendChild(div);
+//     div.appendChild(input);
+//     div.appendChild(cancelBtn);
+// });
+
+
 const inputFileBtn = document.getElementById('addInputFile');
 const fileInputArea = document.getElementById('fileInputArea');
 
@@ -23,17 +46,24 @@ inputFileBtn.addEventListener('click', () => {
 
     input.setAttribute("type", "file");
     input.setAttribute("name", "files[]");
-    div.setAttribute("class", "mb-2");
+    div.setAttribute("class", "mb-2 d-flex gap-2");
     
     cancelBtn.textContent = "Cancel";
-    privacy.textContent = "privacy";
+    privacy.textContent = "Hide";
     cancelBtn.addEventListener("click", function() {
         div.remove(); 
         });
         
     privacy.addEventListener("click", function() {
         event.preventDefault();
-        input.setAttribute("name", "privacy");
+        if (input.getAttribute('name') == "files[]") {
+            input.setAttribute("name", "privacy");
+            privacy.textContent = "Show";
+        }
+        else{
+            privacy.textContent = "Hide";
+            input.setAttribute("name", "files[]");
+        }
     });
 
     fileInputArea.appendChild(div);
