@@ -30,6 +30,18 @@
     background-color: ghostwhite;
 }
 
+.sr-card {
+    padding: 10px;
+    background-color: #fff;
+    height: 100%;
+}
+
+.sr-card-title {
+    font-size: 20px;
+}
+.sr-card-title {
+    font-size: 20px;
+}
 
 .post-view-grid {
     display: grid;

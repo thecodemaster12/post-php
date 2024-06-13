@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
 
         <!-- jquery.vectormap css -->
         <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
@@ -52,7 +52,7 @@ if (isset($_GET['logout'])) {
             
             <header id="page-topbar">
                 <div class="navbar-header">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
                             <a href="dashboard.php" class="logo logo-dark">
@@ -66,10 +66,10 @@ if (isset($_GET['logout'])) {
 
                             <a href="dashboard.php" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="logo-sm-light" height="22">
+                                    <img src="assets/images/logo.png" alt="logo-sm-light" height="20">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="logo-light" height="20">
+                                    <img src="assets/images/logo.png" alt="logo-light" height="40">
                                 </span>
                             </a>
                         </div>

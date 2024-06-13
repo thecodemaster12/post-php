@@ -40,8 +40,10 @@ if (isset($_GET['postId'])) {
                 <div class="card">
 
                     <div class="card-body">
-
-                        <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
+                        <div class="d-flex justify-content-between">
+                            <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
+                            <p class="text-end"><?php echo $row['post_date'] ?></p>
+                        </div>
 
                         <h4 class="font-size-16 mb-4"><?php echo $row['project_name'] ?></h4>
                         <p><?php echo nl2br($row['post_details']) ?></p>
