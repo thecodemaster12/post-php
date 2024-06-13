@@ -7,7 +7,9 @@ include 'includes/header-user.php';
     <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Posts</h4>
+            <h3 class="mb-sm-0">Posts by <?php
+                echo getOrgList($userInfo['user_org'], $conn);
+            ?></h3>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
@@ -21,47 +23,32 @@ include 'includes/header-user.php';
 </div>
 <!-- end page title -->
 
-<div class="row">
+<div class="row g-3 mb-3">
 
+    <?php
+$postList = getPostList($userInfo['user_org'], $conn);
 
-</div><!-- End row -->
-
-
-</div>
-<div class="container">
-    <div class="row">
-
-    
-                            <div class="card col-6 m-2" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        </div>
-
-                            <div class="card col-6 m-2" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        </div>
-
-                            <div class="card col-6 m-2" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        </div>
+if (mysqli_num_rows($postList) > 0) {
+while ($row = mysqli_fetch_assoc($postList)) {
+echo "
+<div class='col-12 col-sm-6 col-md-4'>
+    <div class='card position-relative h-100'>
+        <div class='card-body'>
+            <h5 class='sr-card-title'>".$row['post_title']."</h5>
+            <h6 class='sr-card-subtitle mb-3 text-body-secondary'>".$row['project_name']."</h6>
+            <p class='card-text mb-5'>".truncatePostContent($row['post_details'])."</p>
+            <a type='button' href='user-view-post.php?postId=".$row['post_id']."' class='btn btn-primary p-2 card-link sr-position-end'>View Post</a>
+        </div>
     </div>
+</div>
+";
+}
+} else {
+echo "<h3 class='text-center py-2 text-danger'>No Post Available</h3>";
+}
+
+?>
+
 </div>
 
 <?php

@@ -36,11 +36,17 @@
     height: 100%;
 }
 
+.sr-position-end {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+}
+
 .sr-card-title {
     font-size: 20px;
 }
-.sr-card-title {
-    font-size: 20px;
+.sr-card-subtitle {
+    font-size: 16px;
 }
 
 .post-view-grid {

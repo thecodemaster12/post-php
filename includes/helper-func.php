@@ -244,7 +244,7 @@ function getTrashList($conn) {
     return $result;
 }
 
-function truncatePostContent($content, $length = 100, $ellipsis = '...') {
+function truncatePostContent($content, $length = 200, $ellipsis = '...') {
     // Trim the content to the specified length
     $truncatedContent = mb_substr($content, 0, $length);
 
