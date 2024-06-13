@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2024 at 01:57 PM
+-- Generation Time: Jun 13, 2024 at 05:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,12 +60,9 @@ CREATE TABLE `organizations` (
 --
 
 INSERT INTO `organizations` (`org_id`, `org_name`, `org_address`, `created_at`) VALUES
-(8, 'Airtel', 'Dhaka', '2024-06-05 17:25:52'),
-(9, 'Banglalink', 'Dhaka', '2024-06-05 17:26:01'),
-(10, 'Robi', 'Dhaka', '2024-06-05 17:26:09'),
-(11, 'Grameenphone', 'Dhaka', '2024-06-05 17:26:18'),
-(12, 'Teletalk', 'Dhaka', '2024-06-05 17:26:25'),
-(13, 'Dnet', 'Dhaka', '2024-06-06 12:23:12');
+(16, 'Airtel', 'Dhaka', '2024-06-12 15:51:09'),
+(17, 'Banglalink', 'Dhaka', '2024-06-12 15:51:17'),
+(18, 'Dnet', '4/8 Humayun Road, Block-B, Mohammadpur, Dhaka 1207', '2024-06-12 15:51:22');
 
 -- --------------------------------------------------------
 
@@ -77,7 +74,7 @@ CREATE TABLE `posts` (
   `post_id` int(6) NOT NULL,
   `post_title` varchar(50) NOT NULL,
   `project_name` varchar(100) NOT NULL,
-  `post_details` varchar(1000) NOT NULL,
+  `post_details` varchar(5000) NOT NULL,
   `post_by` int(5) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `post_status` int(6) DEFAULT 1
@@ -88,8 +85,10 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_title`, `project_name`, `post_details`, `post_by`, `created_at`, `post_status`) VALUES
-(44, 'New Post', 'Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!\nLorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!. Lorem ipsum dolor\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!. Lorem ipsum dolor', 8, '2024-06-11 16:48:12', 0),
-(46, 'Dnet Post 2', 'test project', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!. Lorem ipsum dolor\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, obcaecati voluptates vero, qui nesciunt aspernatur fuga animi accusantium maiores explicabo aut omnis reprehenderit minima saepe ducimus expedita itaque quibusdam sint!. Lorem ipsum dolor', 13, '2024-06-11 16:56:10', 0);
+(68, 'Post 1', 'Dummy', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the re', 16, '2024-06-12 15:57:12', 1),
+(69, 'Post 2', 'Test', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 16, '2024-06-12 15:59:50', 1),
+(70, 'Hidden File', 'Hidden', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', 16, '2024-06-12 17:59:48', 1),
+(71, 'Hidden FIles 2', 'Project 1', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', 16, '2024-06-12 18:08:39', 1);
 
 -- --------------------------------------------------------
 
@@ -101,6 +100,7 @@ CREATE TABLE `post_files` (
   `post_files_id` int(6) NOT NULL,
   `post_files_names` varchar(255) NOT NULL,
   `post_id` int(6) NOT NULL,
+  `privacy` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -108,14 +108,15 @@ CREATE TABLE `post_files` (
 -- Dumping data for table `post_files`
 --
 
-INSERT INTO `post_files` (`post_files_id`, `post_files_names`, `post_id`, `created_at`) VALUES
-(38, 'Post Title 1_66682a07e4303_CV of Saifur Rahman Shihab.doc', 42, '2024-06-11 16:42:15'),
-(39, 'Post Title 1_66682a07e80cd_Resume-of-Saifur-Rahman-Shihab.pdf', 42, '2024-06-11 16:42:15'),
-(40, 'Post Title 1_66682a07e9a42_Screenshot 2024-04-22 093248.png', 42, '2024-06-11 16:42:15'),
-(41, 'Post Title 1_66682a07ec2b6_Screenshot 2024-05-02 093055.png', 42, '2024-06-11 16:42:15'),
-(42, 'New Post_66682b6c2030f_Screenshot 2024-04-22 093248.png', 44, '2024-06-11 16:48:12'),
-(43, 'New Post_66682b6c23009_CV of Saifur Rahman Shihab.doc', 44, '2024-06-11 16:48:12'),
-(44, 'Dnet Post_66682c14338c1_Resume-of-Saifur-Rahman-Shihab.pdf', 45, '2024-06-11 16:51:00');
+INSERT INTO `post_files` (`post_files_id`, `post_files_names`, `post_id`, `privacy`, `created_at`) VALUES
+(68, 'Post 1_666970f802877_Screenshot 2024-04-22 093248.png', 68, 0, '2024-06-12 15:57:12'),
+(69, 'Post 1_666970f804193_Resume-of-Saifur-Rahman-Shihab.pdf', 68, 0, '2024-06-12 15:57:12'),
+(70, 'Hidden File_66698db409d23_Resume-of-Saifur-Rahman-Shihab.pdf', 70, 0, '2024-06-12 17:59:48'),
+(71, 'Hidden File_66698db40bb56_Screenshot 2024-05-02 093055.png', 70, 1, '2024-06-12 17:59:48'),
+(72, 'Hidden FIles 2_66698fc7b18f6_Resume-of-Saifur-Rahman-Shihab.pdf', 71, 0, '2024-06-12 18:08:39'),
+(73, 'Hidden FIles 2_66698fc7b3202_Screenshot 2024-05-02 093055.png', 71, 0, '2024-06-12 18:08:39'),
+(74, 'Hidden FIles 2_66698fc7b75c6_CV of Saifur Rahman Shihab.doc', 71, 1, '2024-06-12 18:08:39'),
+(75, 'Hidden FIles 2_66698fc7b91a2_Screenshot 2024-04-22 093248.png', 71, 1, '2024-06-12 18:08:39');
 
 -- --------------------------------------------------------
 
@@ -129,6 +130,7 @@ CREATE TABLE `users` (
   `user_email` varchar(50) NOT NULL,
   `user_pass` varchar(255) NOT NULL,
   `user_org` varchar(50) NOT NULL,
+  `user_active` int(11) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,9 +138,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_pass`, `user_org`, `created_at`) VALUES
-(26, 'Shihab', 'shihab@dnet.org', 'SuqRIUVjgCkoyFkxxd+Xmw==', '13', '2024-06-11 16:32:06'),
-(27, 'User-Airtel', 'air@air.com', 'RpkdzCxrH1fpfq3hWRi9vw==', '8', '2024-06-11 16:38:26');
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_pass`, `user_org`, `user_active`, `created_at`) VALUES
+(35, 'Airtel', 'air@air.com', 'RpkdzCxrH1fpfq3hWRi9vw==', '16', 1, '2024-06-12 15:53:06'),
+(36, 'Shihab', 'shihab@dnet.org', 'SuqRIUVjgCkoyFkxxd+Xmw==', '18', 1, '2024-06-12 15:53:20'),
+(37, 'Banglalink', 'bl@bl.com', '2hsCBpzSySnAYtvjPLqk0A==', '17', 1, '2024-06-12 15:53:34');
 
 --
 -- Indexes for dumped tables
@@ -188,25 +191,25 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `org_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `org_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `post_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `post_files_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `post_files_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
