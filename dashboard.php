@@ -25,6 +25,7 @@ include 'includes/helper-func.php';
 
     <!-- Code Here -->
     <h3>Hello <?php echo $_SESSION['admin']?>, Welcome to Dashboard</h3>
+    
 
     <div class="row">
         <div class="col-xl-4 col-md-6">
@@ -83,7 +84,7 @@ include 'includes/helper-func.php';
                             <?php 
                                     $orgList = getOrgList(null, $conn);
                                     echo mysqli_num_rows($orgList);
-                                    mysqli_free_result($orgList);
+                                    // mysqli_free_result($orgList);
                                 ?>
                             </h4>
                         </div>
@@ -98,9 +99,85 @@ include 'includes/helper-func.php';
         </div><!-- end col -->
     </div><!-- end row -->
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Column with Data Labels</h4>
+                    
+                    <div id="column_chart_datalabel" class="apex-charts" dir="ltr"></div>
+                </div>
+            </div><!--end card-->
+        </div>
+    </div>  
+    <!-- end row -->
+
+    <?php
+        // if (mysqli_num_rows($orgList) > 0 ) {
+        //     while ($row = mysqli_fetch_assoc($orgList)) {
+        //         $post = getPostList($row['org_id'], $conn);
+        //         echo  mysqli_num_rows($post) . ", ";
+        //     }
+        // }
+
+        // if (mysqli_num_rows($orgList) > 0 ) {
+        //     while ($row = mysqli_fetch_assoc($orgList)) {
+        //         echo "'" . $row['org_name'] ."'" . ", ";
+        //     }
+        // }
+    ?>
+
+
 </div>
 
+
+<!-- apexcharts -->
+<script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+<script>
+// charts
+
+var options = {
+    // series: [1, 2, 2],
+    series: [<?php 
+    if (mysqli_num_rows($orgList) > 0 ) {
+        while ($row = mysqli_fetch_assoc($orgList)) {
+            $post = getPostList($row['org_id'], $conn);
+            echo  mysqli_num_rows($post) . ", ";
+        }
+        mysqli_free_result($post);
+    }
+    ?>],
+    chart: {
+        width: 380,
+        type: 'pie',
+    },
+    labels: [ <?php 
+    if (mysqli_num_rows($orgList) > 0 ) {
+            while ($row = mysqli_fetch_assoc($orgList)) {
+                echo "'" . $row['org_name'] ."'" . ", ";
+            }
+        }
+        // mysqli_free_result($orgList);
+    ?> ],
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 200
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
+
+var chart = new ApexCharts(document.querySelector("#column_chart_datalabel"), options);
+chart.render();
+</script>
 
 <?php
 include 'includes/footer.php';
 ?>
+

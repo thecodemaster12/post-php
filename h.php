@@ -4,10 +4,10 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Cards | Upcube - Admin & Dashboard Template</title>
+        <title>Apex Charts | Upcube - Admin & Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-         
+        <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -17,7 +17,6 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -681,12 +680,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Cards</h4>
+                                    <h4 class="mb-sm-0">Apex Charts</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UI Elements</a></li>
-                                            <li class="breadcrumb-item active">Cards</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Charts</a></li>
+                                            <li class="breadcrumb-item active">Apex Charts</li>
                                         </ol>
                                     </div>
 
@@ -694,24 +693,21 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
-                        <div class="row g-3">
-                            <div class="col-3">
-                                <div class="sr-card">
-                                    <h4 class="sr-card-title">Card Title</h4>
-                                    <h6 class="sr-card-subtitle text-secondary">Card Title</h6>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit voluptate nesciunt, dolorum quod aliquid officia perferendis exercitationem, optio cum.</p>
-                                    <span>date</span>
-                                    <br>
-                                    <a href="#" class='btn btn-primary' type='button'>Click</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- end row -->
-        
-
                         
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Column with Data Labels</h4>
+                                        
+                                        <div id="column_chart_datalabel" class="apex-charts" dir="ltr"></div>
+                                    </div>
+                                </div><!--end card-->
+                            </div>
+                        </div>  
+                        <!-- end row -->
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
@@ -730,7 +726,7 @@
                         </div>
                     </div>
                 </footer>
-
+                
             </div>
             <!-- end main content-->
 
@@ -796,8 +792,11 @@
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
 
-        <!-- masonry pkgd -->
-        <script src="assets/libs/masonry-layout/masonry.pkgd.min.js"></script>
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- apexcharts init -->
+        <script src="assets/js/pages/apexcharts.init.js"></script>
 
         <script src="assets/js/app.js"></script>
 

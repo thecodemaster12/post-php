@@ -22,8 +22,8 @@ include './includes/header-user.php';
     <!-- end page title -->
 
     <!-- Code Here -->
-     <p class="fw-bolder font-size-15"><?php echo date("D, d-M-Y");?></p>
-    <h4 class='mb-4'>Hello <?php echo $userInfo['user_name']?>, <br> Welcome to Dashboard</h4>
+     <p class="fw-bolder text-center font-size-16">Today: <?php echo date("D, d-M-Y");?></p>
+    <h4 class='mb-4'>Hello <?php echo $userInfo['user_name']?>,  Welcome to Dashboard</h4>
 
     <div class="row">
         <div class="col-xl-4 col-md-6">
@@ -31,7 +31,7 @@ include './includes/header-user.php';
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-truncate font-size-14 mb-2">Total Posts</p>
+                            <p class="text-truncate font-size-14 mb-2">Total posts by <em><?php echo getOrgList($userInfo['user_org'], $conn);?></em></p>
                             <h4 class="mb-2">
                                 <?php 
                                     $postList = getPostList($userInfo['user_org'], $conn);

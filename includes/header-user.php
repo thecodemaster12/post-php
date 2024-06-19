@@ -25,7 +25,7 @@ $userInfo = mysqli_fetch_assoc($result);
         <title>Dashboard - User</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
+         
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -61,7 +61,7 @@ $userInfo = mysqli_fetch_assoc($result);
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="user-dashboard.php" class="logo logo-dark">
+                            <a href="dashboard.php" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm.png" alt="logo-sm" height="22">
                                 </span>
@@ -70,12 +70,12 @@ $userInfo = mysqli_fetch_assoc($result);
                                 </span>
                             </a>
 
-                            <a href="user-dashboard.php" class="logo logo-light">
+                            <a href="dashboard.php" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="logo-sm-light" height="22">
+                                    <img src="assets/images/logo.png" alt="logo-sm-light" height="20">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="logo-light" height="20">
+                                    <img src="assets/images/logo.png" alt="logo-light" height="40">
                                 </span>
                             </a>
                         </div>

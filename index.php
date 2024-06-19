@@ -4,10 +4,9 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Dashboard | Upcube - Admin & Dashboard Template</title>
+        <title>Welcome</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -30,15 +29,15 @@
 
     </head>
 
-    <body data-topbar="dark">
+    <body data-topbar="dark" style="background-image: url(assets/images/index-bg.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;">
     
     <div class="sr-section">
-        <div class="sr-position-center">
-            <h1 class="text-center">Hello There.</h1>
-            <h3 class="text-center">Welcome to Our Site</h3>
-            <div class="d-flex justify-content-around">
-                <a class="fs-3 text-white bg-primary rounded-3 p-2 m-2" href="admin-login.php">Are you Admin ?</a>
-                <a class="fs-3 text-white bg-primary rounded-3 p-2 m-2" href="user-login.php">Are you User ?</a>
+        <h1 class="fs-1 text-center pt-5">Welcome</h1>
+        <p class="text-cente fs-4 fw-bolder w-75 m-auto">The Post Management System is a powerful tool designed to streamline your content workflow and enhance your publishing process. This innovative system is built to simplify the management of your posts, allowing you to focus on creating and delivering high-quality content.</p>
+        <div class="sr-position-center glass-card">
+            <div class="d-flex justify-content-center gap-3">
+                <a class="fs-5 text-white bg-primary rounded-3 p-2 m-2" href="admin-login.php"> Admin ?</a>
+                <a class="fs-5 text-white bg-primary rounded-3 p-2 m-2" href="user-login.php"> User ?</a>
             </div>
         </div>
     </div>

@@ -10,10 +10,10 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Login | Upcube - Admin & Dashboard Template</title>
+        <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
+         
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -36,8 +36,7 @@
                         <div class="text-center mt-4">
                             <div class="mb-3">
                                 <a href="index.php" class="auth-logo">
-                                    <img src="assets/images/logo-dark.png" height="30" class="logo-dark mx-auto" alt="">
-                                    <img src="assets/images/logo-light.png" height="30" class="logo-light mx-auto" alt="">
+                                    <img src="assets/images/logo.png" height="30" class="logo-dark mx-auto" alt="">
                                 </a>
                             </div>
                         </div>
