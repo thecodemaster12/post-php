@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
         if ($_FILES['files']['name'][0] !== "") {
             $postId = getPostId($postTitle,$postOrg,$conn);
-            uploadFiles($_FILES['files'],$postTitle, $postId ,$conn);
+            uploadFiles($_FILES['files'],$projectName, $postId ,$conn);
         }
 
         if ($_FILES['hiddenFiles']['name'][0] !== "") {
             $postId = getPostId($postTitle,$postOrg,$conn);
-            uploadHiddenFiles($_FILES['hiddenFiles'],$postTitle, $postId ,$conn);
+            uploadHiddenFiles($_FILES['hiddenFiles'],$projectName, $postId ,$conn);
         }
         
         $_SESSION['add-post-success'] = "Post Added";

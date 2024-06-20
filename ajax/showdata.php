@@ -1,5 +1,5 @@
 <?php
-include "includes/helper-func.php";
+include "../includes/helper-func.php";
 
 $userList =  getUserList(null, $conn);
 if (mysqli_num_rows($userList) > 0) {
@@ -22,7 +22,7 @@ if (mysqli_num_rows($userList) > 0) {
             <td>".getOrgList($row['user_org'],$conn)."</td>
             <td>
                 <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?userId=".$row ['user_id']."'>Update</a>
-                <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?userId=".$row ['user_id']."'>Delete</a>
+                <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='includes/delete-handel.php?deleteUserId=".$row ['user_id']."'>Delete</a>
             </td>
         </tr>";
         $count++;

@@ -96,7 +96,7 @@ function getUserId($userEmail, $conn) {
 
 function getPostList($orgId, $conn) {
     if ($orgId == null) {
-        $sql = "SELECT * FROM posts  WHERE post_status = 1 ORDER BY created_at DESC";
+        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts  WHERE post_status = 1 ORDER BY created_at DESC";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -168,7 +168,7 @@ function addFileToDB($fileName, $postId, $conn) {
     mysqli_query($conn, $sql);
 }
 
-function uploadFiles($files, $postTitle, $postId, $conn) {
+function uploadFiles($files, $projectName, $postId, $conn) {
     $path = "../uploads/";
 
     // mkdir($path, 0777, true);
@@ -184,7 +184,7 @@ function uploadFiles($files, $postTitle, $postId, $conn) {
         $file_type = $files['type'][$key];
 
         
-        $new_file_name = $postTitle.'_'.uniqid().'_'.$file_name;
+        $new_file_name = $projectName.'_'.uniqid().'_'.$file_name;
         addFileToDB($new_file_name, $postId, $conn);
 
         // Move the uploaded file to the specified directory with the new file name
@@ -197,7 +197,7 @@ function addHiddenFileToDB($fileName, $postId, $conn) {
     mysqli_query($conn, $sql);
 }
 
-function uploadHiddenFiles($files, $postTitle, $postId, $conn) {
+function uploadHiddenFiles($files, $projectName, $postId, $conn) {
     $path = "../uploads/";
 
     // mkdir($path, 0777, true);
@@ -213,7 +213,7 @@ function uploadHiddenFiles($files, $postTitle, $postId, $conn) {
         $file_type = $files['type'][$key];
 
         
-        $new_file_name = $postTitle.'_'.uniqid().'_'.$file_name;
+        $new_file_name = $projectName.'_'.uniqid().'_'.$file_name;
         addHiddenFileToDB($new_file_name, $postId, $conn);
 
         // Move the uploaded file to the specified directory with the new file name

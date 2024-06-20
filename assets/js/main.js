@@ -36,51 +36,6 @@
 // });
 
 
-
-// Live Search 
-
-$(document).ready(function () {
-    $.ajax({
-        url: "showdata.php",
-        method: 'POST',
-        // data:{show:show},
-
-        success: function (data) {
-            $("#showData").html(data);
-        }
-    });
-    $("#searchItem").keyup(function () {
-        var name = $(this).val();
-        // alert(name);
-
-        if (name != '') {
-            $.ajax({
-                url: "livesearch.php",
-                method: 'POST',
-                data: { name: name },
-
-                success: function (data) {
-                    $("#showData").html(data);
-                }
-            });
-        }
-        else {
-            $.ajax({
-                url: "showdata.php",
-                method: 'POST',
-                // data:{show:show},
-
-                success: function (data) {
-                    $("#showData").html(data);
-                }
-            });
-        }
-    });
-});
-
-
-
-
 const inputFileBtn = document.getElementById('addInputFile');
 const fileInputArea = document.getElementById('fileInputArea');
 

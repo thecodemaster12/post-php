@@ -1,10 +1,10 @@
 <?php
 
-include 'includes/helper-func.php';
+include '../includes/helper-func.php';
 
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
-    $sql = "SELECT * FROM users WHERE user_name LIKE '$name%'";
+    $sql = "SELECT * FROM users WHERE user_name LIKE '$name%' OR user_email LIKE '$name%' OR user_org = (SELECT org_id FROM organizations WHERE org_name LIKE '$name%')";
 
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -27,7 +27,7 @@ if (isset($_POST['name'])) {
                 <td>".getOrgList($row['user_org'],$conn)."</td>
                 <td>
                     <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?userId=".$row ['user_id']."'>Update</a>
-                    <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?userId=".$row ['user_id']."'>Delete</a>
+                    <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='includes/delete-handel.php?deleteUserId=".$row ['user_id']."'>Delete</a>
                 </td>
             </tr>";
             $count++;

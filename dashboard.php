@@ -153,12 +153,13 @@ var options = {
         type: 'pie',
     },
     labels: [ <?php 
+    $orgList = getOrgList(null, $conn);
     if (mysqli_num_rows($orgList) > 0 ) {
             while ($row = mysqli_fetch_assoc($orgList)) {
-                echo "'" . $row['org_name'] ."'" . ", ";
+                echo "'" . $row['org_name'] . "'" . ", ";
             }
         }
-        // mysqli_free_result($orgList);
+        mysqli_free_result($orgList);
     ?> ],
     responsive: [{
         breakpoint: 480,
@@ -172,7 +173,7 @@ var options = {
         }
     }]
 };
-
+console.log(options);
 var chart = new ApexCharts(document.querySelector("#column_chart_datalabel"), options);
 chart.render();
 </script>

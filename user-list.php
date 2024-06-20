@@ -2,9 +2,7 @@
 include 'includes/header.php';
 include 'includes/helper-func.php';
 
-if (isset($_GET['userId'])) {
-    deleteUser($_GET['userId'],$conn);
-}
+
 ?>
 
 
@@ -35,7 +33,7 @@ if (isset($_GET['userId'])) {
                 <div class="card-body">
                     <h4 class="card-title">User List</h4>   
                     <div class="text-center py-4">
-                        <input type="text" name="searchUser" placeholder="Search users..." id="searchItem">
+                        <input class='sr-search' type="text" name="searchUser" placeholder="Search users..." id="searchItem">
                     </div>
 
                     <div id='showData'>
@@ -52,6 +50,50 @@ if (isset($_GET['userId'])) {
 
 
 
+
+
 <?php
 include 'includes/footer.php';
 ?>
+
+<script>
+    // for users
+$(document).ready(function () {
+    $.ajax({
+        url: "ajax/showdata.php",
+        method: 'POST',
+        // data:{show:show},
+
+        success: function (data) {
+            $("#showData").html(data);
+        }
+    });
+    $("#searchItem").keyup(function () {
+        var name = $(this).val();
+        // alert(name);
+
+        if (name != '') {
+            $.ajax({
+                url: "ajax/livesearch.php",
+                method: 'POST',
+                data: { name: name },
+
+                success: function (data) {
+                    $("#showData").html(data);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: "ajax/showdata.php",
+                method: 'POST',
+                // data:{show:show},
+
+                success: function (data) {
+                    $("#showData").html(data);
+                }
+            });
+        }
+    });
+});
+</script>
