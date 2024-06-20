@@ -4,7 +4,7 @@ include '../includes/helper-func.php';
 
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
-    $sql = "SELECT * FROM posts WHERE post_title LIKE '$name%' OR project_name LIKE '$name%' OR post_by = (SELECT org_id FROM organizations WHERE org_name LIKE '$name%')";
+    $sql = "SELECT * FROM posts WHERE post_title LIKE '%$name%' OR project_name LIKE '%$name%' OR post_by = (SELECT org_id FROM organizations WHERE org_name LIKE '%$name%')";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {

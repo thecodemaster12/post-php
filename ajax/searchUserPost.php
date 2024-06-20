@@ -5,7 +5,7 @@ include '../includes/helper-func.php';
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
     $id = $_POST['id'];
-    $sql = "SELECT * , DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_title LIKE '$name%' OR project_name LIKE '$name%' AND post_by = $id ORDER BY created_at DESC";
+    $sql = "SELECT * , DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_title LIKE '%$name%' OR project_name LIKE '%$name%' AND post_by = $id ORDER BY created_at DESC";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
