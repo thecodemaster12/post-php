@@ -33,7 +33,7 @@ include 'includes/helper-func.php';
                     <h4 class="card-title">Post List</h4>
                     <p class="card-title-desc">Some Text</p>
                     <div class="text-center py-4">
-                        <input class='sr-search' type="text" name="searchUser" placeholder="Search posts..." id="searchPost">
+                        <input class='sr-search' type="text" name="searchUser" placeholder="Search by Post Title, Project Name, Posted By..." id="searchPost">
                     </div>
                     <div class="text-end">
                         <?php
