@@ -59,6 +59,22 @@ if (!empty($_POST['updatePostId'])) {
             uploadFiles($_FILES['files'],$postTitle, $postId ,$conn);
         }
         
+        if (isset($_POST['privacy'])) {
+            $privacy = $_POST['privacy'];
+            $value = 1;
+            foreach ($privacy as $id) {
+                setFilePrivacy($id, $value, $conn);
+            }
+        }
+        
+        if (isset($_POST['show'])) {
+            $show = $_POST['show'];
+            $value = 0;
+            foreach ($show as $id) {
+                setFilePrivacy($id, $value, $conn);
+            }
+        }
+        
         header("Location: ../update-post.php?postId=".$postId);
         $_SESSION['update-success'] = "Post Updated";
         exit();

@@ -47,7 +47,7 @@ include 'includes/helper-func.php';
                         if (mysqli_num_rows($post) > 0) {
                             while ($row = mysqli_fetch_assoc($post)) {
                             ?>
-                    <form class="custom-validation" action="includes/test-handel.php" method="post" enctype="multipart/form-data">
+                    <form class="custom-validation" action="includes/update-handel.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="updatePostId" value="<?php echo $row['post_id']?>">
                         <div class="mb-3">
                             <label>Post Title</label>
@@ -113,13 +113,30 @@ include 'includes/helper-func.php';
                                 if (mysqli_num_rows($postFiles) > 0) {
                                     while ($row = mysqli_fetch_assoc($postFiles) ) {
                                         // echo "<a class='d-inline-block m-1' href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a> <button type='button' class='btn btn-danger'>X</button><br>";
-                                        echo "<div class='d-flex justify-content-between align-items-center mb-2'>
-                                                <a href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a>
-                                                <div class='d-flex gap-3'>
-                                                    <a href='".$_SERVER['PHP_SELF']."?postFileId=".$row['post_files_id']."&postId=".$postId."&postFileName=".$row['post_files_names']."'><i class='ri-delete-bin-line fs-3 text-danger'></i></a>
-                                                    <a class='hiddenFileStatus' status='false' name='tom[]' value=".$row['post_files_id']." ><i class='ri-eye-off-line fs-3 text-info'></i></a>
-                                                </div>
-                                            </div>";
+                                        if ($row['privacy'] == 1) {
+                                            echo "<div class='d-flex justify-content-between align-items-center mb-2'>
+                                                    <a href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a>
+                                                    <div class='d-flex gap-3'>
+                                                        <a href='".$_SERVER['PHP_SELF']."?postFileId=".$row['post_files_id']."&postId=".$postId."&postFileName=".$row['post_files_names']."'><i class='ri-delete-bin-line fs-3 text-danger'></i></a>
+                                                        <a class='hiddenFileStatus' status='true'>
+                                                            <i class='ri-eye-off-line fs-3 text-info'></i>
+                                                            <input type='hidden' value=".$row['post_files_id']."  />
+                                                        </a>
+                                                    </div>
+                                                </div>";
+                                        }
+                                        else {
+                                            echo "<div class='d-flex justify-content-between align-items-center mb-2'>
+                                                    <a href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a>
+                                                    <div class='d-flex gap-3'>
+                                                        <a href='".$_SERVER['PHP_SELF']."?postFileId=".$row['post_files_id']."&postId=".$postId."&postFileName=".$row['post_files_names']."'><i class='ri-delete-bin-line fs-3 text-danger'></i></a>
+                                                        <a class='hiddenFileStatus' status='false'>
+                                                            <i class='ri-eye-line fs-3 text-info'></i>
+                                                            <input type='hidden' value=".$row['post_files_id']."  />
+                                                        </a>
+                                                    </div>
+                                                </div>";
+                                        }
                                     }
                                 }
                                 else

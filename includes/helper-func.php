@@ -316,6 +316,11 @@ function deleteOrg($orgId, $conn) {
     mysqli_query($conn, $sql);
 }
 
+function setFilePrivacy($postFileId, $value, $conn) {
+    $sql = "UPDATE post_files SET privacy = $value WHERE post_files_id = $postFileId";
+    mysqli_query($conn, $sql);
+}
+
 
 function encrypt($data, $name) {
     $method = "AES-256-CBC";
@@ -334,3 +339,4 @@ function decrypt($encryptData, $name) {
     $decryptedData = openssl_decrypt($encryptData, $method, $key, $options,$iv);
     return $decryptedData;
 }
+
