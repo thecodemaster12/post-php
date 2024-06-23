@@ -76,3 +76,49 @@
     outline: none;
     border-radius: 5px;
 }
+
+.sr-file-card{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.file-items {
+    background-color: rgb(242 245 255);
+    padding: 20px;
+    width: 160px;
+    height: 160px;
+    border: 1px solid #00000085;
+    border-radius: 5px;
+    text-overflow: ellipsis;
+}
+
+
+.file-icon i {
+    font-size: 45px;
+    height: 100%;
+    /* color: #000; */
+}
+
+.file-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-icon .fa-file-word {
+    color: #185abd;
+}
+.file-icon .fa-file-excel {
+    color: #107a40;
+}
+.file-icon .fa-file-pdf {
+    color: #E30809;
+}
+.file-icon .fa-file-image {
+    color: #1480d8af;
+}
+.file-icon .fa-file-powerpoint {
+    color: #c43f1d;
+}

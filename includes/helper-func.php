@@ -223,7 +223,18 @@ function uploadHiddenFiles($files, $projectName, $postId, $conn) {
 
 function deletePost($id, $conn) {
     $sql = "UPDATE posts SET post_status=0 WHERE post_id = $id";
+    mysqli_query($conn, $sql);
+}
+
+function getAdmin($conn) {
+    $sql = "SELECT * FROM admins";
     $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function updateAdmin($adminName, $adminEmail, $adminPass, $conn) {
+    $sql = "UPDATE admins SET admin_name='$adminName' ,admin_email='$adminEmail' ,admin_pass= '$adminPass'";
+    mysqli_query($conn, $sql);
 }
 
 

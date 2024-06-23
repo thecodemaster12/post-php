@@ -11,12 +11,12 @@ if (isset($_GET['userId'])) {
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Add User</h4>
+                <h4 class="mb-sm-0">Profile</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">User</a></li>
-                        <li class="breadcrumb-item active">Add User</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
                     </ol>
                 </div>
 
@@ -35,7 +35,7 @@ if (isset($_GET['userId'])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add User</h4>
+                    <h4 class="card-title">Update Profile</h4>
                     <p class="card-title-desc text-center ">
                         <?php
                             if (!empty($_SESSION['update-error'])) {

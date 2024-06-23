@@ -59,27 +59,7 @@ if (isset($_GET['postId'])) {
                             else
                                 echo "No was File Attached";
                         ?>
-                        
 
-                        <!-- <div class="row">
-                            <div class="col-xl-2 col-6">
-                                <div class="card">
-                                    <img class="card-img-top img-fluid" src="assets/images/small/img-3.jpg" alt="Card image cap">
-                                    <div class="py-2 text-center">
-                                        <a href="" class="fw-medium">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-6">
-                                <div class="card">
-                                    <img class="card-img-top img-fluid" src="assets/images/small/img-4.jpg" alt="Card image cap">
-                                    <div class="py-2 text-center">
-                                        <a href="" class="fw-medium">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="javascript: void(0);" class="btn btn-secondary waves-effect mt-4"><i class="mdi mdi-reply"></i> Reply</a> -->
                     </div>
 
                 </div>

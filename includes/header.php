@@ -122,7 +122,7 @@ if (isset($_GET['logout'])) {
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                                <a class="dropdown-item" href="admin-profile.php"><i class="ri-user-line align-middle me-1"></i> Profile</a>
                                 <a class="dropdown-item text-danger" href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?logout'?>"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                             </div>
                         </div>

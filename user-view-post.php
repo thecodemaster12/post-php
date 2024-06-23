@@ -42,7 +42,7 @@ if (isset($_GET['postId'])) {
                         
                     <div class="d-flex justify-content-between">
                         <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
-                        <p class="text-end"><?php echo $row['post_date'] ?></p>
+                        <p class="text-end" style='width:400px;'><?php echo $row['post_date'] ?></p>
                     </div>
 
                         <h4 class="font-size-16 mb-4"><?php echo $row['project_name'] ?></h4>
@@ -51,38 +51,121 @@ if (isset($_GET['postId'])) {
 
                         <p>Attachments</p>
                         <hr>
+                        <div class="sr-file-card">
                         <?php
                             $postFiles = getUserFiles($_GET['postId'], $conn);
                             if (mysqli_num_rows($postFiles) > 0) {
                                 while ($row = mysqli_fetch_assoc($postFiles) ) {
-                                    echo "<a download href='uploads/".$row['post_files_names']."'</a>".$row['post_files_names']."<br>";
-                                    // echo "<embed src='uploads/".$row['post_files_names']."' width='100px' height='100px' />"."<br>";
+
+                                    $fileName = $row['post_files_names'];
+                                    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                                    // For File Icons
+                                    if ($extension == "doc") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-word'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    elseif ($extension == "jpg" || $extension == "jpeg" ||$extension == "png") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-image'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    elseif ($extension == "pdf") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-pdf'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    elseif ($extension == "excel") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-excel'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    elseif ($extension == "xlsx") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-excel'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    elseif ($extension == "pptx") {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file-powerpoint'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
+                                    else {
+                                        echo "
+                                            <a download href='uploads/".$row['post_files_names']."'>
+                                                <div class='file-items'>
+                                                    <div class='file-icon'>
+                                                        <i class='mb-4 far fa-file'></i>
+                                                    </div>
+                                                    <p>
+                                                        ". truncatePostContent($row['post_files_names'], 20) ."
+                                                    </p>
+                                                </div>
+                                            </a> <br>
+                                        ";
+                                    }
                                 }
                             }
                             else
                                 echo "No was File Attached";
                         ?>
-                        
-
-                        <!-- <div class="row">
-                            <div class="col-xl-2 col-6">
-                                <div class="card">
-                                    <img class="card-img-top img-fluid" src="assets/images/small/img-3.jpg" alt="Card image cap">
-                                    <div class="py-2 text-center">
-                                        <a href="" class="fw-medium">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-6">
-                                <div class="card">
-                                    <img class="card-img-top img-fluid" src="assets/images/small/img-4.jpg" alt="Card image cap">
-                                    <div class="py-2 text-center">
-                                        <a href="" class="fw-medium">Download</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
-                        <a href="javascript: void(0);" class="btn btn-secondary waves-effect mt-4"><i class="mdi mdi-reply"></i> Reply</a> -->
                     </div>
 
                 </div>

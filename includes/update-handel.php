@@ -112,5 +112,17 @@ if (!empty($_POST['updateUserProfileId'])) {
 
 }
 
+// Update Admin
+if (!empty($_POST['admin'])) {
+    $adminName = $_POST['admin_name'];
+    $adminEmail = $_POST['admin_email'];
+    $adminPass = $_POST['admin_pass'];
+    updateAdmin($adminName, $adminEmail, $adminPass, $conn);
+
+    $_SESSION['update-success'] = "Profile Updated";
+    header("Location: ../admin-profile.php");
+    exit();
+}
 
 }
+

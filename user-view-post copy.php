@@ -1,6 +1,5 @@
 <?php
-include 'includes/header.php';
-include 'includes/helper-func.php';
+include 'includes/header-user.php';
 
 if (isset($_GET['postId'])) {
     $post = getPost($_GET['postId'], $conn);
@@ -40,10 +39,11 @@ if (isset($_GET['postId'])) {
                 <div class="card">
 
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
-                            <p class="text-end"><?php echo $row['post_date'] ?></p>
-                        </div>
+                        
+                    <div class="d-flex justify-content-between">
+                        <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
+                        <p class="text-end" style='width:400px;'><?php echo $row['post_date'] ?></p>
+                    </div>
 
                         <h4 class="font-size-16 mb-4"><?php echo $row['project_name'] ?></h4>
                         <p><?php echo nl2br($row['post_details']) ?></p>
@@ -59,14 +59,13 @@ if (isset($_GET['postId'])) {
 
                                     $fileName = $row['post_files_names'];
                                     $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-                                    
                                     // For File Icons
                                     if ($extension == "doc") {
                                         echo "
                                             <a download href='uploads/".$row['post_files_names']."'>
                                                 <div class='file-items'>
                                                     <div class='file-icon'>
-                                                        <i class='mb-4 far fa-file-word'></i>
+                                                        <i class='mb-4 far fa-file-excel'></i>
                                                     </div>
                                                     <p>
                                                         ". truncatePostContent($row['post_files_names'], 20) ."
@@ -117,34 +116,7 @@ if (isset($_GET['postId'])) {
                                             </a> <br>
                                         ";
                                     }
-                                    elseif ($extension == "xlsx") {
-                                        echo "
-                                            <a download href='uploads/".$row['post_files_names']."'>
-                                                <div class='file-items'>
-                                                    <div class='file-icon'>
-                                                        <i class='mb-4 far fa-file-excel'></i>
-                                                    </div>
-                                                    <p>
-                                                        ". truncatePostContent($row['post_files_names'], 20) ."
-                                                    </p>
-                                                </div>
-                                            </a> <br>
-                                        ";
-                                    }
-                                    elseif ($extension == "pptx") {
-                                        echo "
-                                            <a download href='uploads/".$row['post_files_names']."'>
-                                                <div class='file-items'>
-                                                    <div class='file-icon'>
-                                                        <i class='mb-4 far fa-file-powerpoint'></i>
-                                                    </div>
-                                                    <p>
-                                                        ". truncatePostContent($row['post_files_names'], 20) ."
-                                                    </p>
-                                                </div>
-                                            </a> <br>
-                                        ";
-                                    }
+
                                     else {
                                         echo "
                                             <a download href='uploads/".$row['post_files_names']."'>
@@ -159,11 +131,21 @@ if (isset($_GET['postId'])) {
                                             </a> <br>
                                         ";
                                     }
+
+                                    // echo "<a download href='uploads/".$row['post_files_names']."'>".$row['post_files_names']."</a><br>";
+                                    // echo "<embed src='uploads/".$row['post_files_names']."' width='100px' height='100px' />"."<br>";
                                 }
                             }
                             else
                                 echo "No was File Attached";
                         ?>
+                            <!-- <div class="file-items">
+                            <i class="far fa-file-word fs-1"></i>
+                            <i class="far fa-file-excel fs-1"></i>
+                            <i class="far fa-file-pdf fs-1"></i>
+                            <i class="far fa-file-image fs-1"></i>
+                            <i class="far fa-file-powerpoint fs-1"></i>
+                            </div> -->
                             
                         </div>
                     </div>
