@@ -87,22 +87,17 @@ if (isset($_GET['userId'])) {
                                 <?php
                                     $orgList =  getOrgList(null, $conn);
                                     if (mysqli_num_rows($orgList) > 0) {
-                                        echo "<select class='form-select' name='userOrg' aria-label='Default select example'>";
                                         while ($row = mysqli_fetch_assoc($orgList)) {
-                                            if ($user['user_org'] = $row['org_id']) {
-                                                echo "<option selected value='".$row['org_id']."'>".$row['org_name']."</option>";
+                                            if ($user['user_org'] == $row['org_id']) {
+                                                echo "<p>".$row['org_name']."</p>";
                                             }
-                                            else
-                                                echo "<option value='".$row['org_id']."'>".$row['org_name']."</option>";
                                         }
-                                        echo "</select>";
-                                    }
-                                    else {
-                                        echo "No Org Found";
                                     }
                                 ?>
                             </div>
                         </div>
+
+                        <input type="hidden" name="userOrg" value='<?php echo $user['user_org'];?>'>
 
                         <div class="mb-0">
                             <div>
