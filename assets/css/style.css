@@ -84,15 +84,6 @@
     gap: 10px;
 }
 
-.file-items {
-    background-color: rgb(242 245 255);
-    padding: 20px;
-    width: 160px;
-    height: 160px;
-    border: 1px solid #00000085;
-    border-radius: 5px;
-    text-overflow: ellipsis;
-}
 
 
 .file-icon i {

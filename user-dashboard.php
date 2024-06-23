@@ -25,6 +25,7 @@ include './includes/header-user.php';
      <p class="fw-bolder text-center font-size-16">Today: <?php echo date("D, d-M-Y");?></p>
     <h4 class='mb-4'>Hello <?php echo $userInfo['user_name']?>,  Welcome to Dashboard</h4>
 
+
     <div class="row">
         <div class="col-xl-4 col-md-6">
             <div class="card">
