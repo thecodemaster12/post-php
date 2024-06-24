@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-include 'includes/helper-func.php';
+// include 'includes/helper-func.php';
 
 
 if (isset($_GET['orgId'])) {

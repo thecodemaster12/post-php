@@ -1,8 +1,14 @@
 <?php
 session_start();
+include 'includes/helper-func.php';
 if (empty($_SESSION['admin'])){
     header("Location: admin-login.php");
 }
+
+$sql = "SELECT * FROM admins";
+$result = mysqli_query($conn, $sql);
+
+$admin = mysqli_fetch_assoc($result);
 
 if (isset($_GET['logout'])) {
     unset($_SESSION['admin']);
@@ -117,7 +123,7 @@ if (isset($_GET['logout'])) {
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
                                     alt="Header Avatar"> -->
-                                <span class="d-none d-xl-inline-block ms-1"> <?php echo $_SESSION['admin']?></span>
+                                <span class="d-none d-xl-inline-block ms-1"> <?php echo $admin['admin_name']; ?></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
