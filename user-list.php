@@ -35,9 +35,68 @@ include 'includes/header.php';
                     <div class="text-center py-4">
                         <input class='sr-search' type="text" name="searchUser" placeholder="Search users..." id="searchItem">
                     </div>
+                    <?php
+                        $start = 0;
+                        $limit = 10;
 
-                    <div id='showData'>
+                        if (isset($_GET['page'])) {
+                            $start = ($_GET['page'] - 1) * $limit;
+                        }
+                    ?>
 
+                    <div id='showData' class="mb-3">
+
+                    </div>
+
+                    <div class="d-flex justify-content-between px-3 align-items-center">
+                        <!-- Page Info -->
+                        <div class="">
+                        <?php
+
+                            $totalPages = ceil(mysqli_num_rows($conn->query("SELECT * FROM posts  WHERE post_status = 1")) / $limit);
+                            // $pages = ceil($postList / 4);
+                            if (!isset($_GET['page'])) {
+                                $page = 1;
+                            }
+                            else {
+                                $page = $_GET['page'];
+                            }
+                            echo "Page ".$page." of $totalPages";
+                        ?>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="">
+                        <ul class="pagination">
+                            <?php
+                                if (isset($_GET['page']) && $_GET['page'] > 1) {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=". $_GET['page'] - 1 ."'>Previous</a></li>";
+                                }
+                                else {
+                                    echo "<li class='page-item'><a class='page-link'>Previous</a></li>";
+                                }
+                            ?>
+
+
+                            <?php
+                                    for ($i=1; $i <= $totalPages; $i++) { 
+                                        echo "<li class='page-item'><a class='page-link' href='?page=".$i."'>".$i."</a></li>";
+                                    }
+                                ?>
+
+
+                            <?php
+                                if (!isset($_GET['page'])) {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=2'>Next</a></li>";
+                                }
+                                elseif ($_GET['page'] >= $totalPages) {
+                                    echo "<li class='page-item'><a class='page-link'>Next</a></li>";
+                                }
+                                else {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=".$_GET['page'] + 1 ."'>Next</a></li>";
+                                }
+                            ?>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -62,7 +121,7 @@ $(document).ready(function () {
     $.ajax({
         url: "ajax/showdata.php",
         method: 'POST',
-        // data:{show:show},
+        data:{start: <?php echo $start;?>, limit: <?php echo $limit;?>, count: <?php echo $page;?>},
 
         success: function (data) {
             $("#showData").html(data);
@@ -87,7 +146,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "ajax/showdata.php",
                 method: 'POST',
-                // data:{show:show},
+                data:{start: <?php echo $start;?>, limit: <?php echo $limit;?>, count: <?php echo $page;?>},
 
                 success: function (data) {
                     $("#showData").html(data);

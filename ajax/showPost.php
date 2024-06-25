@@ -1,10 +1,13 @@
 <?php
 include "../includes/helper-func.php";
 
+$start = $_POST['start'];
+$limit = $_POST['limit'];
+$count = $_POST['count'];
 
-$postList =  getPostList(null, $conn);
+$postList =  getLimitedPostList($start, $limit, $conn);
 if (mysqli_num_rows($postList) > 0) {
-    $count = 1;
+    $index = ($limit * ($count - 1)) + 1;
     echo "<div class='w-100 overflow-auto'>  <table class='text-center table table-hover mb-0'>
         <thead>
             <tr>
@@ -20,7 +23,7 @@ if (mysqli_num_rows($postList) > 0) {
         while ($row = mysqli_fetch_assoc($postList)) {
             $postFIle = getFiles($row ['post_id'], $conn);
             echo "<tr>
-            <th width='50px'>".$count."</th>
+            <th width='50px'>".$index."</th>
             <td width='150px'>".$row['post_title']."</td>
             <td width='150px'>".$row['project_name']."</td>
             <td width='400px'>".truncatePostContent($row['post_details'])."</td>
@@ -32,7 +35,7 @@ if (mysqli_num_rows($postList) > 0) {
                 <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='includes/delete-handel.php?deletePostId=".$row ['post_id']."'>Delete</a>
             </td>
         </tr>";
-        $count++;
+        $index++;
         } 
     echo "</table> </div>";
 }

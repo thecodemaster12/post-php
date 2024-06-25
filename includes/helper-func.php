@@ -87,6 +87,14 @@ function getUserList($userId, $conn) {
     }
 }
 
+function getLimitedUserList($start, $limit, $conn) {
+    $sql = "SELECT * FROM users WHERE user_active = 1 LIMIT $start, $limit";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+
+
 function getUserId($userEmail, $conn) {
     $sql = "SELECT * FROM users WHERE user_email = '$userEmail'";
     $result = mysqli_query($conn, $sql);
@@ -105,6 +113,18 @@ function getPostList($orgId, $conn) {
         $result = mysqli_query($conn, $sql);
         return $result;
     }
+}
+
+function getLimitedPostListWithId($orgId, $start, $limit, $conn) {
+        $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_by = $orgId ORDER BY post_date DESC LIMIT $start, $limit";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+}
+
+function getLimitedPostList($start, $limit, $conn) {
+    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts  WHERE post_status = 1 ORDER BY created_at DESC LIMIT $start, $limit";
+    $result = mysqli_query($conn, $sql);
+    return $result;
 }
 
 function getPost($postId, $conn) {

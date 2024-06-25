@@ -30,8 +30,7 @@ include 'includes/header.php';
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Post List</h4>
-                    <p class="card-title-desc">Some Text</p>
+                    <h4 class="card-title m-0">Post List</h4>
                     <div class="text-center py-4">
                         <input class='sr-search' type="text" name="searchUser" placeholder="Search by Post Title, Project Name, Posted By..." id="searchPost">
                     </div>
@@ -43,8 +42,17 @@ include 'includes/header.php';
                             }
                         ?>
                     </div>
+
+                    <?php
+                        $start = 0;
+                        $limit = 5;
+                        
+                        if (isset($_GET['page'])) {
+                            $start = ($_GET['page'] - 1) * $limit;
+                        }
+                    ?>
                     
-                    <div id="showData">
+                    <div id="showData" class="mb-4">
 
                     </div>
                     
@@ -88,6 +96,57 @@ include 'includes/header.php';
                         // }
                     ?>
 
+                    <div class="d-flex justify-content-between px-3">
+                        <!-- Page Info -->
+                        <div class="">
+                        <?php
+
+                            $totalPages = ceil(mysqli_num_rows($conn->query("SELECT * FROM posts  WHERE post_status = 1")) / $limit);
+                            // $pages = ceil($postList / 4);
+                            if (!isset($_GET['page'])) {
+                                $page = 1;
+                            }
+                            else {
+                                $page = $_GET['page'];
+                            }
+                            echo "Page ".$page." of $totalPages";
+                        ?>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="">
+                        <ul class="pagination">
+                            <?php
+                                if (isset($_GET['page']) && $_GET['page'] > 1) {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=". $_GET['page'] - 1 ."'>Previous</a></li>";
+                                }
+                                else {
+                                    echo "<li class='page-item'><a class='page-link'>Previous</a></li>";
+                                }
+                            ?>
+
+
+                            <?php
+                                    for ($i=1; $i <= $totalPages; $i++) { 
+                                        echo "<li class='page-item'><a class='page-link' href='?page=".$i."'>".$i."</a></li>";
+                                    }
+                                ?>
+
+
+                            <?php
+                                if (!isset($_GET['page'])) {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=2'>Next</a></li>";
+                                }
+                                elseif ($_GET['page'] >= $totalPages) {
+                                    echo "<li class='page-item'><a class='page-link'>Next</a></li>";
+                                }
+                                else {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=".$_GET['page'] + 1 ."'>Next</a></li>";
+                                }
+                            ?>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -103,11 +162,11 @@ include 'includes/footer.php';
 
 <script>
     // for posts
-$(document).ready(function () {
-    $.ajax({
-        url: "ajax/showPost.php",
-        method: 'POST',
-        // data:{show:show},
+    $(document).ready(function () {
+        $.ajax({
+            url: "ajax/showPost.php",
+            method: 'POST',
+            data:{start: <?php echo $start;?>, limit: <?php echo $limit;?>, count: <?php echo $page;?>},
 
         success: function (data) {
             $("#showData").html(data);
@@ -133,6 +192,7 @@ $(document).ready(function () {
                 url: "ajax/showPost.php",
                 method: 'POST',
                 // data:{show:show},
+                data:{start: <?php echo $start;?>, limit: <?php echo $limit;?>, count: <?php echo $page;?>},
 
                 success: function (data) {
                     $("#showData").html(data);
