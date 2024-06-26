@@ -51,7 +51,7 @@ include './includes/header-user.php';
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-truncate font-size-14 mb-2">Total posts by <em><?php echo getOrgList($userInfo['user_org'], $conn);?></em></p>
+                            <p class="text-truncate font-size-14 mb-2">Total projects by <em><?php echo getOrgList($userInfo['user_org'], $conn);?></em></p>
                             <h4 class="mb-2">
                                 <?php 
                                     $postList = getPostList($userInfo['user_org'], $conn);
