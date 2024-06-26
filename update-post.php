@@ -37,7 +37,7 @@ include 'includes/header.php';
                 <p class="card-title-desc text-center">
                         <?php
                             if (!empty($_SESSION['update-success'])) {
-                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['update-success']."</div>";
                                 unset($_SESSION['update-success']);
                             }
                         ?>
@@ -210,11 +210,11 @@ include 'includes/header.php';
                     <p class="card-title-desc text-center ">
                         <?php
                             if (!empty($_SESSION['update-error'])) {
-                                echo "<span class='text-danger'>".$_SESSION['update-error']."</span>";
+                                echo "<div class='alert alert-danger text-center' role='alert'>".$_SESSION['update-error']."</div>";
                                 unset($_SESSION['update-error']);
                             }
                             if (!empty($_SESSION['update-success'])) {
-                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['update-success']."</div>";
                                 unset($_SESSION['update-success']);
                             }
                         ?>
@@ -332,11 +332,11 @@ if (isset($_GET['orgId'])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Organization</h4>
+                    <h4 class="card-title">Update Organization</h4>
                     <p class="card-title-desc text-center">
                     <?php
                             if (!empty($_SESSION['update-success'])) {
-                                echo "<span class='text-success'>".$_SESSION['update-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['update-success']."</div>";
                                 unset($_SESSION['update-success']);
                             }
                         ?>

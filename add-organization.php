@@ -32,11 +32,11 @@ include 'includes/header.php';
                     <p class="card-title-desc text-center">
                     <?php
                             if (!empty($_SESSION['add-org-error'])) {
-                                echo "<span class='text-danger'>".$_SESSION['add-org-error']."</span>";
+                                echo "<div class='alert alert-danger text-center' role='alert'>".$_SESSION['add-org-error']."</div>";
                                 unset($_SESSION['add-org-error']);
                             }
                             elseif(!empty($_SESSION['add-org-success'])){
-                                echo "<span class='text-success'>".$_SESSION['add-org-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['add-org-success']."</div>";
                                 unset($_SESSION['add-org-success']);
                             }
                         ?>

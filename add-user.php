@@ -38,11 +38,11 @@ include 'includes/header.php';
                     <p class="card-title-desc text-center ">
                         <?php
                             if (!empty($_SESSION['add-user-error'])) {
-                                echo "<span class='text-danger'>".$_SESSION['add-user-error']."</span>";
+                                echo "<div class='alert alert-danger text-center' role='alert'>".$_SESSION['add-user-error']."</div>";
                                 unset($_SESSION['add-user-error']);
                             }
                             elseif(!empty($_SESSION['add-user-success'])){
-                                echo "<span class='text-success'>".$_SESSION['add-user-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['add-user-success']."</div>";
                                 unset($_SESSION['add-user-success']);
                             }
                         ?>

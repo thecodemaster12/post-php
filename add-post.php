@@ -31,13 +31,14 @@ include 'includes/header.php';
                 <div class="card-body">
                     <h4 class="card-title">Add Project</h4>
                     <p class="card-title-desc text-center">
+
                         <?php
                             if (!empty($_SESSION['add-post-error'])) {
-                                echo "<span class='text-danger'>".$_SESSION['add-post-error']."</span>";
+                                echo "<div class='alert alert-danger text-center' role='alert'>".$_SESSION['add-post-error']."</div>";
                                 unset($_SESSION['add-post-error']);
                             }
                             elseif(!empty($_SESSION['add-post-success'])){
-                                echo "<span class='text-success'>".$_SESSION['add-post-success']."</span>";
+                                echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['add-post-success']."</div>";
                                 unset($_SESSION['add-post-success']);
                             }
                         ?>
