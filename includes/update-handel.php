@@ -114,9 +114,11 @@ if (!empty($_POST['updateUserProfileId'])) {
 
 // Update Admin
 if (!empty($_POST['admin'])) {
-    $adminName = $_POST['admin_name'];
-    $adminEmail = $_POST['admin_email'];
-    $adminPass = $_POST['admin_pass'];
+    $adminName = htmlspecialchars($_POST['admin_name']);
+    $adminEmail = htmlspecialchars($_POST['admin_email']);
+    $adminPass = htmlspecialchars($_POST['admin_pass']);
+
+    $adminPass = encrypt($adminPass, "adminP@$$");
     updateAdmin($adminName, $adminEmail, $adminPass, $conn);
 
     $_SESSION['update-success'] = "Profile Updated";

@@ -65,7 +65,7 @@ include 'includes/header.php';
                 <div class="row mb-3">
                     <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" name="admin_pass" value="<?php echo $admin['admin_pass']; ?>" id="example-password-input">
+                        <input class="form-control" type="text" name="admin_pass" value="<?php echo decrypt($admin['admin_pass'], "adminP@$$"); ?>" id="example-password-input">
                     </div>
                 </div>
                 <!-- end row -->
