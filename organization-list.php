@@ -34,8 +34,8 @@ if (isset($_GET['orgId'])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Organization List</h4>
-                    <p class="card-title-desc">Some Text</p>    
+                    <h4 class="card-title mb-4">Organization List</h4>
+                    <!-- <p class="card-title-desc">Some Text</p>     -->
                     
                     <?php
                         $orgList =  getOrgList(null, $conn);
@@ -55,7 +55,7 @@ if (isset($_GET['orgId'])) {
                                     echo "<tr>
                                     <th>".$count."</th>
                                     <td>".$row ['org_name']."</td>
-                                    <td>".$row ['org_phone']."</td>
+                                    <td><a href='tel: ".$row ['org_phone']."'>".$row ['org_phone']."</a></td>
                                     <td>".$row ['org_address']."</td>
                                     <td>
                                         <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?orgId=".$row ['org_id']."'>Update</a>
