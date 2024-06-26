@@ -164,11 +164,11 @@ if (isset($_GET['logout'])) {
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="ri-edit-line"></i>
-                                    <span>Posts</span>
+                                    <span>Projects</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="add-post.php">Add Post</a></li>
-                                    <li><a href="post-list.php">Post List</a></li>
+                                    <li><a href="add-post.php">Add Project</a></li>
+                                    <li><a href="post-list.php">Project List</a></li>
                                 </ul>
                             </li>
 

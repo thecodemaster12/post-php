@@ -11,12 +11,12 @@ include 'includes/header.php';
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Post List</h4>
+                <h4 class="mb-sm-0">Project List</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                        <li class="breadcrumb-item active">Post List</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
+                        <li class="breadcrumb-item active">Project List</li>
                     </ol>
                 </div>
 
@@ -30,9 +30,9 @@ include 'includes/header.php';
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title m-0">Post List</h4>
+                    <h4 class="card-title m-0">Project List</h4>
                     <div class="text-center py-4">
-                        <input class='sr-search' type="text" name="searchUser" placeholder="Search by Post Title, Project Name, Posted By..." id="searchPost">
+                        <input class='sr-search' type="text" name="searchUser" placeholder="Search by Project Title, Posted By..." id="searchPost">
                     </div>
                     <div class="text-end">
                         <?php

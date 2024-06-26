@@ -26,7 +26,7 @@ if (isset($_GET['emptyTrash'])) {
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
                         <li class="breadcrumb-item active">Trash List</li>
                     </ol>
                 </div>
@@ -42,7 +42,6 @@ if (isset($_GET['emptyTrash'])) {
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Trash List</h4>
-                    <p class="card-title-desc">Some Text</p>
                     <div class="text-end">
                         <?php
                         $trashList = getTrashList($conn);
@@ -61,24 +60,22 @@ if (isset($_GET['emptyTrash'])) {
                                 <thead>
                                     <tr>
                                         <th width='50px'>#</th>
-                                        <th width='150px'>Post Title</th>
-                                        <th width='150px'>Project Name</th>
+                                        <th width='300px'>Project Name</th>
                                         <th width='400px'>Post Details</th>
-                                        <th width='150px'>Posted By</th>
-                                        <th width='150px'>Attachment</th>
-                                        <th width='100px'>Actions</th>
+                                        <th >Posted By</th>
+                                        <th >Attachment</th>
+                                        <th >Actions</th>
                                     </tr>
                                 </thead>";
                                 while ($row = mysqli_fetch_assoc($trashList)) {
                                     $postFIle = getFiles($row ['post_id'], $conn);
                                     echo "<tr>
                                     <th width='50px'>".$count."</th>
-                                    <td width='150px'>".$row['post_title']."</td>
-                                    <td width='150px'>".$row['project_name']."</td>
-                                    <td width='400px'>".truncatePostContent($row['post_details'])."</td>
-                                    <td width='150px'>".getOrgList($row ['post_by'], $conn)."</td>
-                                    <td width='150px'>".mysqli_num_rows($postFIle)." files</td>
-                                    <td width='100px'>
+                                    <td width='300px'>".$row['project_name']."</td>
+                                    <td width='400px'>".truncatePostContent($row['post_details'], 100)."</td>
+                                    <td >".getOrgList($row ['post_by'], $conn)."</td>
+                                    <td >".mysqli_num_rows($postFIle)." files</td>
+                                    <td >
                                         <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?restore=".$row ['post_id']."'>Restore</a>
                                         <a class='d-inline-block bg-danger text-white p-2 m-1 rounded-2' href='".htmlspecialchars($_SERVER['PHP_SELF'])."?deleteFE=".$row ['post_id']."'>Delete</a>
                                     </td>

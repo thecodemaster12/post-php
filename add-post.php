@@ -10,12 +10,12 @@ include 'includes/header.php';
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Add Post</h4>
+                <h4 class="mb-sm-0">Add Projects</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                        <li class="breadcrumb-item active">Add Post</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
+                        <li class="breadcrumb-item active">Add Project</li>
                     </ol>
                 </div>
 
@@ -29,7 +29,7 @@ include 'includes/header.php';
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Post</h4>
+                    <h4 class="card-title">Add Project</h4>
                     <p class="card-title-desc text-center">
                         <?php
                             if (!empty($_SESSION['add-post-error'])) {
@@ -44,18 +44,18 @@ include 'includes/header.php';
                     </p>
 
                     <form class="custom-validation" action="includes/add-handel.php" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label>Post Title</label>
                             <input type="text" name="postTitle" class="form-control" required placeholder="Post title"/>
-                        </div>
+                        </div> -->
 
                         <div class="mb-3">
-                            <label>Project Name</label>
+                            <label>Project Title</label>
                             <input type="text" name="projectName" class="form-control" required placeholder="Project title"/>
                         </div>
 
                         <div class="mb-3">
-                            <label>Post Details</label>
+                            <label>Project Details</label>
                             <div>
                                 <textarea name="postDetails" required class="form-control" rows="5"></textarea>
                             </div>

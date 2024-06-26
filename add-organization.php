@@ -45,7 +45,17 @@ include 'includes/header.php';
                     <form class="custom-validation" action="includes/add-handel.php" method="post">
                         <div class="mb-3">
                             <label>Name of the Organization</label>
-                            <input type="text" name="orgName" class="form-control" required placeholder="Organization Name"/>
+                            <input type="text" name="orgName" class="form-control" required placeholder="Name"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>About Organization</label>
+                            <div>
+                                <textarea name="orgAbout" required class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Phone</label>
+                            <input type="text" name="orgPhone" class="form-control" required placeholder="019xxxxxxxx"/>
                         </div>
                         <div class="mb-3">
                             <label>Address</label>

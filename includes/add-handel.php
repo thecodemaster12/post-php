@@ -3,31 +3,31 @@ session_start();
 include 'helper-func.php';
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // Add Post
-    if (isset($_POST['postTitle'])) {
-        $postTitle = htmlspecialchars($_POST['postTitle']);
+    // Add Project
+    if (isset($_POST['projectName'])) {
+        // $postTitle = htmlspecialchars($_POST['postTitle']);
         $projectName = htmlspecialchars($_POST['projectName']);
         $postDetails = htmlspecialchars($_POST['postDetails']);
         $postOrg = htmlspecialchars($_POST['postOrg']);
     
-        if (empty($postTitle) || empty($postDetails) || empty($postOrg)) {
+        if (empty($projectName) || empty($postDetails) || empty($postOrg)) {
             $_SESSION['add-post-error'] = "Please fill all the inputs";
             header("Location: ../add-post.php");
             exit();
         }
     
-        addPost($postTitle, $projectName, $postDetails, $postOrg, $conn);
+        addPost($projectName, $postDetails, $postOrg, $conn);
     
     
         if ($_FILES['files']['name'][0] !== "") {
-            $postId = getPostId($postTitle,$postOrg,$conn);
+            $postId = getPostId($projectName,$postOrg,$conn);
             uploadFiles($_FILES['files'],$projectName, $postId ,$conn);
         }
 
-        if ($_FILES['hiddenFiles']['name'][0] !== "") {
-            $postId = getPostId($postTitle,$postOrg,$conn);
-            uploadHiddenFiles($_FILES['hiddenFiles'],$projectName, $postId ,$conn);
-        }
+        // if ($_FILES['hiddenFiles']['name'][0] !== "") {
+        //     $postId = getPostId($postTitle,$postOrg,$conn);
+        //     uploadHiddenFiles($_FILES['hiddenFiles'],$projectName, $postId ,$conn);
+        // }
         
         $_SESSION['add-post-success'] = "Post Added";
         header("Location: ../add-post.php");
@@ -73,10 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Add Organization
     if (isset($_POST['orgName'])) {        
         $orgName = htmlspecialchars($_POST['orgName']);
+        $orgAbout = htmlspecialchars($_POST['orgAbout']);
+        $orgPhone = htmlspecialchars($_POST['orgPhone']);
         $orgAddress = htmlspecialchars($_POST['orgAddress']);
         $orgName = ucfirst(strtolower($orgName));
-        if (empty($orgName) || empty($orgAddress)) {
-            $_SESSION['add-org-error'] = "Organization name or address missing";
+        if (empty($orgName) || empty($orgAbout) || empty($orgPhone) || empty($orgAddress)) {
+            $_SESSION['add-org-error'] = "Fill out all the field";
             header("Location: ../add-organization.php");
             exit();
         }
@@ -87,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit();
         }
     
-        addOrg($orgName,$orgAddress, $conn);
+        addOrg($orgName,$orgAbout, $orgPhone, $orgAddress, $conn);
         $_SESSION['add-org-success'] = "Organization Added";
         header("Location: ../add-organization.php");
         exit();

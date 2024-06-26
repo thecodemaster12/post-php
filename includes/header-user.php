@@ -165,7 +165,7 @@ $userInfo = mysqli_fetch_assoc($result);
                             <li>
                                 <a href="user-post.php" class="waves-effect">
                                     <i class="ri-edit-line"></i>
-                                    <span>Post</span>
+                                    <span>Projects</span>
                                 </a>
                             </li>
 

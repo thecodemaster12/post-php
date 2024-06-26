@@ -50,13 +50,13 @@ function addUser($userName, $userEmail, $userPass, $userOrg, $conn) {
     mysqli_query($conn, $sql);
 }
 
-function addOrg($orgName,$orgAddress, $conn) {
-    $sql = "INSERT INTO organizations (org_name, org_address) VALUE ('$orgName', '$orgAddress')";
+function addOrg($orgName,$orgAbout, $orgPhone, $orgAddress,  $conn) {
+    $sql = "INSERT INTO organizations (org_name, org_about, org_phone, org_address) VALUE ('$orgName','$orgAbout', '$orgPhone', '$orgAddress')";
     mysqli_query($conn, $sql);
 }
 
-function addPost($postTitle,$projectName, $postDetails, $postOrg, $conn) {
-    $sql = "INSERT INTO posts ( post_title, project_name, post_details, post_by) VALUES ('$postTitle', '$projectName', '$postDetails', '$postOrg')";
+function addPost($projectName, $postDetails, $postOrg, $conn) {
+    $sql = "INSERT INTO posts (project_name, post_details, post_by) VALUES ( '$projectName', '$postDetails', '$postOrg')";
     mysqli_query($conn, $sql);
 }
 
@@ -72,6 +72,12 @@ function getOrgList($orgId, $conn) {
         $row = mysqli_fetch_assoc($result);
         return $row['org_name'];
     }
+}
+
+function getOrgDetails($orgId, $conn) {
+    $sql = "SELECT * FROM organizations WHERE org_id = $orgId";
+    $result = mysqli_query($conn, $sql);
+    return $result;
 }
 
 function getUserList($userId, $conn) {
@@ -146,8 +152,8 @@ function getUserFiles($postId, $conn) {
     return $result;
 }
 
-function getPostId($postTitle,$postOrg,$conn) {
-    $sql = "SELECT post_id FROM posts WHERE post_title = '$postTitle' AND post_by = $postOrg";
+function getPostId($projectTitle,$postOrg,$conn) {
+    $sql = "SELECT post_id FROM posts WHERE project_name = '$projectTitle' AND post_by = $postOrg";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     return $row['post_id'];
@@ -197,6 +203,8 @@ function uploadFiles($files, $projectName, $postId, $conn) {
 
         // echo $files['name'][0];
 
+        $projectName = mb_substr($projectName, 0, 12);
+
     foreach($files['tmp_name'] as $key => $tmp_name){
         $file_name = $files['name'][$key];
         $file_size = $files['size'][$key];
@@ -225,6 +233,8 @@ function uploadHiddenFiles($files, $projectName, $postId, $conn) {
         // highlight_string(var_export($files, true));
 
         // echo $files['name'][0];
+
+        $projectName = mb_substr($projectName, 0, 12);
 
     foreach($files['tmp_name'] as $key => $tmp_name){
         $file_name = $files['name'][$key];
@@ -263,8 +273,8 @@ function updateUser($userId, $userName, $userEmail, $userOrg, $userPass, $conn) 
     $result = mysqli_query($conn, $sql);
 }
 
-function updatePost($postId, $postTitle, $projectName, $postDetails, $postOrg, $conn) {
-    $sql = "UPDATE posts SET post_title='$postTitle',project_name='$projectName',post_details='$postDetails',post_by=$postOrg WHERE post_id=$postId";
+function updatePost($postId, $projectName, $postDetails, $postOrg, $conn) {
+    $sql = "UPDATE posts SET project_name='$projectName',post_details='$postDetails',post_by=$postOrg WHERE post_id=$postId";
     $result = mysqli_query($conn, $sql);
 }
 
@@ -288,8 +298,8 @@ function truncatePostContent($content, $length = 200, $ellipsis = '...') {
 }
 
 
-function updateOrg($orgId, $orgName, $orgAddress, $conn) {
-    $sql = "UPDATE organizations SET org_name='$orgName',org_address='$orgAddress' WHERE org_id = $orgId";
+function updateOrg($orgId, $orgName,$orgAbout,$orgPhone, $orgAddress, $conn) {
+    $sql = "UPDATE organizations SET org_name='$orgName', org_about='$orgAbout', org_phone='$orgPhone',  org_address='$orgAddress' WHERE org_id = $orgId";
     $result = mysqli_query($conn, $sql);
 }
 
@@ -341,6 +351,13 @@ function deleteOrg($orgId, $conn) {
         deletePostFileLocation($row['post_id'], $conn);
         deletePostForEver($row['post_id'], $conn);
         // echo $row['post_id'];
+    }
+
+    $sql = "SELECT user_id FROM users WHERE user_org = $orgId";
+    $userList =mysqli_query($conn, $sql);
+    
+    while ($row = mysqli_fetch_assoc($userList)) {
+        deleteUser($row['user_id'],$conn);
     }
 
     $sql = "DELETE FROM organizations WHERE org_id = $orgId";

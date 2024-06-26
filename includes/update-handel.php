@@ -7,9 +7,11 @@ if (isset($_SERVER['REQUEST_METHOD']) == "POST") {
 if (!empty($_POST['updateOrgId'])) {
     $orgId = $_POST['updateOrgId'];
     $orgName = $_POST['orgName'];
+    $orgAbout = $_POST['orgAbout'];
+    $orgPhone = $_POST['orgPhone'];
     $orgAddress = $_POST['orgAddress'];
 
-    updateOrg($orgId, $orgName, $orgAddress, $conn);
+    updateOrg($orgId, $orgName,$orgAbout, $orgPhone, $orgAddress, $conn);
     $_SESSION['update-success'] = "Updated";
     header("Location: ../update-post.php?orgId=". $orgId);
 }
@@ -44,19 +46,19 @@ if (!empty($_POST['updateUserId'])) {
     
 }
 
-// Update Post
+// Update Project
 if (!empty($_POST['updatePostId'])) {
         $postId = $_POST['updatePostId'];
-        $postTitle = htmlspecialchars($_POST['postTitle']);
+        // $postTitle = htmlspecialchars($_POST['postTitle']);
         $projectName = htmlspecialchars($_POST['projectName']);
         $postDetails = htmlspecialchars($_POST['postDetails']);
         $postOrg = htmlspecialchars($_POST['postOrg']);
 
-        updatePost($postId, $postTitle, $projectName, $postDetails, $postOrg, $conn);
+        updatePost($postId, $projectName, $postDetails, $postOrg, $conn);
         
         if (!empty($_FILES['files']['name'][0])) {
-            $postId = getPostId($postTitle,$postOrg,$conn);
-            uploadFiles($_FILES['files'],$postTitle, $postId ,$conn);
+            $postId = getPostId($projectName,$postOrg,$conn);
+            uploadFiles($_FILES['files'],$projectName, $postId ,$conn);
         }
         
         if (isset($_POST['privacy'])) {

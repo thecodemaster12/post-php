@@ -15,12 +15,12 @@ include 'includes/header.php';
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Update Post</h4>
+                <h4 class="mb-sm-0">Update Project</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                        <li class="breadcrumb-item active">Update Post</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
+                        <li class="breadcrumb-item active">Update Project</li>
                     </ol>
                 </div>
 
@@ -49,13 +49,9 @@ include 'includes/header.php';
                             ?>
                     <form class="custom-validation" action="includes/update-handel.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="updatePostId" value="<?php echo $row['post_id']?>">
-                        <div class="mb-3">
-                            <label>Post Title</label>
-                            <input type="text" value="<?php echo $row['post_title'] ?>" name="postTitle" class="form-control" required placeholder="Post title"/>
-                        </div>
 
                         <div class="mb-3">
-                            <label>Project Name</label>
+                            <label>Project Title</label>
                             <input type="text" value="<?php echo $row['project_name'] ?>" name="projectName" class="form-control" required placeholder="Project title"/>
                         </div>
 
@@ -351,6 +347,16 @@ if (isset($_GET['orgId'])) {
                         <div class="mb-3">
                             <label>Name of the Organization</label>
                             <input type="text" value="<?php echo $row['org_name']?>" name="orgName" class="form-control" required placeholder="Organization Name"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>About Organization</label>
+                            <div>
+                                <textarea name="orgAbout" required class="form-control" rows="5"><?php echo $row['org_about']?></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Phone</label>
+                            <input type="text" value="<?php echo $row['org_phone']?>" name="orgPhone" class="form-control" required placeholder="019xxxxxxxx"/>
                         </div>
                         <div class="mb-3">
                             <label>Address</label>

@@ -12,7 +12,6 @@ echo "
 <div class='col-12 col-sm-6 col-md-4'>
     <div class='card position-relative h-100'>
         <div class='card-body'>
-        <h5 class='sr-card-title'>".$row['post_title']."</h5>
         <h6 class='sr-card-subtitle mb-3 text-body-secondary'>".$row['project_name']."</h6>
         <p class='card-text mb-5'>".truncatePostContent($row['post_details'])."</p>
         <a type='button' href='user-view-post.php?postId=".$row['post_id']."' class='btn btn-primary p-2 card-link sr-position-end'>View</a>

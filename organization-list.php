@@ -46,6 +46,7 @@ if (isset($_GET['orgId'])) {
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>Contact</th>
                                         <th>Address</th>
                                         <th>Actions</th>
                                     </tr>
@@ -54,6 +55,7 @@ if (isset($_GET['orgId'])) {
                                     echo "<tr>
                                     <th>".$count."</th>
                                     <td>".$row ['org_name']."</td>
+                                    <td>".$row ['org_phone']."</td>
                                     <td>".$row ['org_address']."</td>
                                     <td>
                                         <a class='d-inline-block bg-primary text-white p-2 m-1 rounded-2' href='update-post.php?orgId=".$row ['org_id']."'>Update</a>

@@ -16,12 +16,12 @@ if (isset($_GET['postId'])) {
     <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Posts</h4>
+            <h4 class="mb-sm-0">Project</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                    <li class="breadcrumb-item active">Post List</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
+                    <li class="breadcrumb-item active">Project List</li>
                 </ol>
             </div>
 
@@ -41,11 +41,10 @@ if (isset($_GET['postId'])) {
 
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h2 class="font-size-20"><?php echo $row['post_title'] ?></h2>
+                            <h2 class="font-size-20"><?php echo $row['project_name'] ?></h2>
                             <p class="text-end"><?php echo $row['post_date'] ?></p>
                         </div>
 
-                        <h4 class="font-size-16 mb-4"><?php echo $row['project_name'] ?></h4>
                         <p><?php echo nl2br($row['post_details']) ?></p>
                         <br><br>
 
@@ -61,7 +60,7 @@ if (isset($_GET['postId'])) {
                                     $extension = pathinfo($fileName, PATHINFO_EXTENSION);
                                     
                                     // For File Icons
-                                    if ($extension == "doc") {
+                                    if ($extension == "doc" || $extension == "docx") {
                                         echo "
                                             <a download href='uploads/".$row['post_files_names']."'>
                                                 <div class='card p-3 border-1 border-dark'>
