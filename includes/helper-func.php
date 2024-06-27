@@ -139,6 +139,12 @@ function getPost($postId, $conn) {
     return $result;
 }
 
+function getPostWithUserOrg($postId, $userID, $conn) {
+    $sql = "SELECT *, DATE_FORMAT(created_at, '%d-%M-%Y %h:%i %p') AS post_date FROM posts WHERE post_id = $postId AND post_by= (SELECT user_org FROM users WHERE user_id = $userID) ORDER BY created_at DESC";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 
 function getFiles($postId, $conn) {
     $sql = "SELECT * FROM post_files WHERE post_id = $postId";
@@ -147,6 +153,12 @@ function getFiles($postId, $conn) {
 }
 
 function getUserFiles($postId, $conn) {
+    $sql = "SELECT * FROM post_files WHERE post_id = $postId AND privacy = 0";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function getUserFilesWithOrg($postId, $conn) {
     $sql = "SELECT * FROM post_files WHERE post_id = $postId AND privacy = 0";
     $result = mysqli_query($conn, $sql);
     return $result;
