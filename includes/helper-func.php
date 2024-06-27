@@ -176,7 +176,7 @@ function isNotAdmin($adminEmail, $adminPass, $conn) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
-    if ($row['admin_email'] == $adminEmail && $row['admin_pass'] == $adminPass)
+    if ($row['admin_email'] == $adminEmail && decrypt($row['admin_pass'], "adminP@$$") == $adminPass)
         return false;
     else
         return true;
